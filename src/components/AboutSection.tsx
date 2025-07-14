@@ -6,44 +6,44 @@ const AboutSection = () => {
       
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="font-orbitron text-4xl lg:text-5xl font-bold text-glow mb-4">
+          <h2 className="font-orbitron text-4xl lg:text-5xl font-bold text-glow mb-4" data-aos="fade-up">
             <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               Digital Identity
             </span>
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto neon-glow rounded-full" />
+          <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto neon-glow rounded-full" data-aos="fade-up" data-aos-delay="100" />
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
           {/* Left - Personal Info */}
-          <div className="space-y-6 animate-fade-in">
-            <div className="cyber-border bg-card/50 backdrop-blur-sm rounded-lg p-8">
+          <div className="space-y-6" data-aos="fade-right" data-aos-delay="200">
+            <div className="cyber-border bg-card/50 backdrop-blur-sm rounded-lg p-8" data-aos="fade-up" data-aos-delay="300">
               <h3 className="font-orbitron text-2xl font-bold text-primary mb-6 text-glow">
                 PERSONAL DATA
               </h3>
               
               <div className="space-y-4 font-rajdhani">
-                <div className="flex justify-between items-center py-2 border-b border-border/50">
+                <div className="flex justify-between items-center py-2 border-b border-border/50" data-aos="fade-up" data-aos-delay="400">
                   <span className="text-muted-foreground">NAME:</span>
                   <span className="text-foreground font-medium">Alex Chen</span>
                 </div>
                 
-                <div className="flex justify-between items-center py-2 border-b border-border/50">
+                <div className="flex justify-between items-center py-2 border-b border-border/50" data-aos="fade-up" data-aos-delay="450">
                   <span className="text-muted-foreground">ROLE:</span>
                   <span className="text-secondary text-glow">Full Stack Developer</span>
                 </div>
                 
-                <div className="flex justify-between items-center py-2 border-b border-border/50">
+                <div className="flex justify-between items-center py-2 border-b border-border/50" data-aos="fade-up" data-aos-delay="500">
                   <span className="text-muted-foreground">LOCATION:</span>
                   <span className="text-foreground font-medium">San Francisco, CA</span>
                 </div>
                 
-                <div className="flex justify-between items-center py-2 border-b border-border/50">
+                <div className="flex justify-between items-center py-2 border-b border-border/50" data-aos="fade-up" data-aos-delay="550">
                   <span className="text-muted-foreground">EXPERIENCE:</span>
                   <span className="text-accent text-glow">5+ Years</span>
                 </div>
                 
-                <div className="flex justify-between items-center py-2">
+                <div className="flex justify-between items-center py-2" data-aos="fade-up" data-aos-delay="600">
                   <span className="text-muted-foreground">STATUS:</span>
                   <div className="flex items-center space-x-2">
                     <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
@@ -53,7 +53,7 @@ const AboutSection = () => {
               </div>
             </div>
 
-            <div className="text-muted-foreground leading-relaxed font-rajdhani text-lg">
+            <div className="text-muted-foreground leading-relaxed font-rajdhani text-lg" data-aos="fade-up" data-aos-delay="700">
               <p className="mb-4">
                 Passionate about creating immersive digital experiences that push the boundaries 
                 of what's possible on the web. I specialize in building scalable applications 
@@ -68,7 +68,7 @@ const AboutSection = () => {
           </div>
 
           {/* Right - Holographic Display */}
-          <div className="relative animate-float">
+          <div className="relative" data-aos="fade-left" data-aos-delay="400">
             <div className="cyber-border bg-gradient-to-br from-card/30 to-card/10 backdrop-blur-sm rounded-lg p-8 relative overflow-hidden">
               {/* Hologram effect overlay */}
               <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 via-transparent to-secondary/10" />

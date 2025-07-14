@@ -36,20 +36,20 @@ const ContactSection = () => {
       
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="font-orbitron text-4xl lg:text-5xl font-bold text-glow mb-4">
+          <h2 className="font-orbitron text-4xl lg:text-5xl font-bold text-glow mb-4" data-aos="fade-up">
             <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               Initialize Contact
             </span>
           </h2>
-          <p className="text-muted-foreground font-rajdhani text-lg">
+          <p className="text-muted-foreground font-rajdhani text-lg" data-aos="fade-up" data-aos-delay="100">
             Ready to start a new mission together?
           </p>
-          <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto neon-glow rounded-full mt-4" />
+          <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto neon-glow rounded-full mt-4" data-aos="fade-up" data-aos-delay="200" />
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
           {/* Terminal Form */}
-          <div className="cyber-border bg-card/20 backdrop-blur-sm rounded-lg overflow-hidden">
+          <div className="cyber-border bg-card/20 backdrop-blur-sm rounded-lg overflow-hidden" data-aos="fade-right" data-aos-delay="300">
             {/* Terminal Header */}
             <div className="bg-muted/20 border-b border-border px-6 py-4">
               <div className="flex items-center space-x-2">
@@ -154,14 +154,14 @@ const ContactSection = () => {
           </div>
 
           {/* Contact Info */}
-          <div className="space-y-8">
-            <div className="cyber-border bg-card/20 backdrop-blur-sm rounded-lg p-8">
+          <div className="space-y-8" data-aos="fade-left" data-aos-delay="300">
+            <div className="cyber-border bg-card/20 backdrop-blur-sm rounded-lg p-8" data-aos="fade-up" data-aos-delay="400">
               <h3 className="font-orbitron text-xl font-bold text-primary text-glow mb-6">
                 CONTACT_PROTOCOLS
               </h3>
 
               <div className="space-y-6">
-                <div className="flex items-center space-x-4">
+                <div className="flex items-center space-x-4" data-aos="fade-up" data-aos-delay="500">
                   <div className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center neon-glow">
                     <MapPin className="text-primary" size={20} />
                   </div>
@@ -171,7 +171,7 @@ const ContactSection = () => {
                   </div>
                 </div>
 
-                <div className="flex items-center space-x-4">
+                <div className="flex items-center space-x-4" data-aos="fade-up" data-aos-delay="600">
                   <div className="w-12 h-12 bg-secondary/20 rounded-lg flex items-center justify-center neon-glow-blue">
                     <Mail className="text-secondary" size={20} />
                   </div>
@@ -181,7 +181,7 @@ const ContactSection = () => {
                   </div>
                 </div>
 
-                <div className="flex items-center space-x-4">
+                <div className="flex items-center space-x-4" data-aos="fade-up" data-aos-delay="700">
                   <div className="w-12 h-12 bg-accent/20 rounded-lg flex items-center justify-center">
                     <Github className="text-accent" size={20} />
                   </div>
@@ -194,7 +194,7 @@ const ContactSection = () => {
             </div>
 
             {/* System Status */}
-            <div className="cyber-border bg-card/20 backdrop-blur-sm rounded-lg p-6">
+            <div className="cyber-border bg-card/20 backdrop-blur-sm rounded-lg p-6" data-aos="fade-up" data-aos-delay="800">
               <h4 className="font-orbitron text-lg font-bold text-accent text-glow mb-4">
                 SYSTEM_STATUS
               </h4>

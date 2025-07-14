@@ -89,18 +89,18 @@ const SkillsSection = () => {
       
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="font-orbitron text-4xl lg:text-5xl font-bold text-glow mb-4">
+          <h2 className="font-orbitron text-4xl lg:text-5xl font-bold text-glow mb-4" data-aos="fade-up">
             <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               Skill Network
             </span>
           </h2>
-          <p className="text-muted-foreground font-rajdhani text-lg">
+          <p className="text-muted-foreground font-rajdhani text-lg" data-aos="fade-up" data-aos-delay="100">
             Interactive technology ecosystem
           </p>
-          <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto neon-glow rounded-full mt-4" />
+          <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto neon-glow rounded-full mt-4" data-aos="fade-up" data-aos-delay="200" />
         </div>
 
-        <div className="relative max-w-6xl mx-auto">
+        <div className="relative max-w-6xl mx-auto" data-aos="fade-up" data-aos-delay="300">
           {/* Canvas for connections */}
           <canvas
             ref={canvasRef}
@@ -111,7 +111,7 @@ const SkillsSection = () => {
 
           {/* Skill nodes */}
           <div className="relative h-96 lg:h-[400px]">
-            {skills.map((skill) => (
+            {skills.map((skill, index) => (
               <div
                 key={skill.id}
                 className="absolute transform -translate-x-1/2 -translate-y-1/2 cursor-pointer group"
@@ -121,6 +121,8 @@ const SkillsSection = () => {
                 }}
                 onMouseEnter={() => setHoveredSkill(skill.id)}
                 onMouseLeave={() => setHoveredSkill(null)}
+                data-aos="zoom-in"
+                data-aos-delay={400 + index * 100}
               >
                 <div 
                   className={`
@@ -166,9 +168,9 @@ const SkillsSection = () => {
           </div>
 
           {/* Legend */}
-          <div className="flex flex-wrap justify-center gap-6 mt-12">
-            {Object.entries(categoryColors).map(([category, color]) => (
-              <div key={category} className="flex items-center space-x-2">
+          <div className="flex flex-wrap justify-center gap-6 mt-12" data-aos="fade-up" data-aos-delay="800">
+            {Object.entries(categoryColors).map(([category, color], index) => (
+              <div key={category} className="flex items-center space-x-2" data-aos="fade-up" data-aos-delay={900 + index * 100}>
                 <div 
                   className="w-3 h-3 rounded-full"
                   style={{ backgroundColor: color }}
