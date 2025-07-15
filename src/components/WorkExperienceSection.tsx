@@ -1,5 +1,5 @@
 
-import { Calendar, MapPin, ExternalLink } from 'lucide-react';
+import { Calendar, MapPin, ExternalLink, Building, Star } from 'lucide-react';
 
 interface Experience {
   id: string;
@@ -61,8 +61,23 @@ const WorkExperienceSection = () => {
   ];
 
   return (
-    <section id="experience" className="py-20 relative">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-muted/5 to-transparent" />
+    <section id="experience" className="py-20 relative overflow-hidden">
+      {/* Floating Stars Background */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-muted/5 to-transparent" />
+        {[...Array(30)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-1 h-1 bg-secondary/20 rounded-full animate-float"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 8}s`,
+              animationDuration: `${8 + Math.random() * 4}s`,
+            }}
+          />
+        ))}
+      </div>
       
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
@@ -71,111 +86,119 @@ const WorkExperienceSection = () => {
               Work Experience
             </span>
           </h2>
-          <p className="text-muted-foreground font-rajdhani text-lg" data-aos="fade-up" data-aos-delay="100">
-            Professional journey and key accomplishments
+          <p className="text-muted-foreground font-rajdhani text-lg max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+            Professional journey building innovative solutions and leading development teams
           </p>
           <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full mt-4" data-aos="fade-up" data-aos-delay="200" />
         </div>
 
-        <div className="max-w-4xl mx-auto">
-          <div className="relative">
-            {/* Timeline line */}
-            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-secondary to-accent hidden md:block"></div>
-
-            <div className="space-y-12">
-              {experiences.map((exp, index) => (
-                <div
-                  key={exp.id}
-                  className="relative"
-                  data-aos="fade-up"
-                  data-aos-delay={300 + index * 200}
-                >
-                  {/* Timeline dot */}
-                  <div className="absolute left-6 w-4 h-4 bg-primary rounded-full border-4 border-background hidden md:block" 
-                       style={{ top: '1.5rem' }}></div>
-
-                  {/* Experience card */}
-                  <div className="md:ml-20 bg-card/50 backdrop-blur-sm border border-border rounded-xl p-6 hover:border-primary/30 transition-all duration-300">
-                    <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4 mb-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid gap-8 md:gap-12">
+            {experiences.map((exp, index) => (
+              <div
+                key={exp.id}
+                className="group relative"
+                data-aos="fade-up"
+                data-aos-delay={300 + index * 200}
+              >
+                {/* Modern Card Design */}
+                <div className="relative bg-gradient-to-br from-card/80 to-card/40 backdrop-blur-sm border border-border/50 rounded-2xl p-8 hover:border-primary/30 transition-all duration-500 overflow-hidden">
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  
+                  {/* Content */}
+                  <div className="relative z-10">
+                    <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 mb-6">
                       <div className="flex-1">
-                        <h3 className="font-orbitron text-xl lg:text-2xl font-bold text-foreground mb-2">
-                          {exp.title}
-                        </h3>
-                        <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-muted-foreground">
-                          <div className="flex items-center gap-2">
-                            <span className="font-rajdhani text-lg font-semibold text-primary">
-                              {exp.company}
-                            </span>
-                            {exp.website && (
-                              <a
-                                href={exp.website}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-secondary hover:text-primary transition-colors"
-                              >
-                                <ExternalLink size={16} />
-                              </a>
-                            )}
+                        <div className="flex items-start gap-4 mb-4">
+                          <div className="p-3 bg-primary/10 rounded-xl border border-primary/20">
+                            <Building className="w-6 h-6 text-primary" />
                           </div>
-                          <div className="flex items-center gap-1">
-                            <MapPin size={14} />
-                            <span className="text-sm">{exp.location}</span>
+                          <div>
+                            <h3 className="font-orbitron text-xl lg:text-2xl font-bold text-foreground mb-2">
+                              {exp.title}
+                            </h3>
+                            <div className="flex flex-wrap items-center gap-4 text-muted-foreground">
+                              <div className="flex items-center gap-2">
+                                <span className="font-rajdhani text-lg font-semibold text-primary">
+                                  {exp.company}
+                                </span>
+                                {exp.website && (
+                                  <a
+                                    href={exp.website}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-secondary hover:text-primary transition-colors"
+                                  >
+                                    <ExternalLink size={16} />
+                                  </a>
+                                )}
+                              </div>
+                              <div className="flex items-center gap-1">
+                                <MapPin size={14} />
+                                <span className="text-sm">{exp.location}</span>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
                       
-                      <div className="flex items-center gap-2 text-muted-foreground bg-muted/20 px-3 py-1 rounded-lg">
-                        <Calendar size={14} />
-                        <span className="text-sm font-rajdhani">{exp.duration}</span>
+                      <div className="flex items-center gap-2 text-muted-foreground bg-muted/20 px-4 py-2 rounded-xl border border-border/50">
+                        <Calendar size={16} />
+                        <span className="font-rajdhani font-medium">{exp.duration}</span>
                       </div>
                     </div>
 
-                    <p className="text-muted-foreground font-rajdhani leading-relaxed mb-6">
+                    <p className="text-muted-foreground font-rajdhani leading-relaxed mb-8 text-lg">
                       {exp.description}
                     </p>
 
-                    {/* Technologies */}
-                    <div className="mb-6">
-                      <h4 className="font-orbitron text-sm font-bold text-secondary mb-3">
-                        TECHNOLOGIES:
-                      </h4>
-                      <div className="flex flex-wrap gap-2">
-                        {exp.technologies.map((tech, techIndex) => (
-                          <span
-                            key={tech}
-                            className="px-3 py-1 bg-muted/30 border border-primary/20 rounded-lg text-sm font-rajdhani text-foreground hover:border-primary/50 transition-all duration-300"
-                            data-aos="zoom-in"
-                            data-aos-delay={400 + index * 200 + techIndex * 50}
-                          >
-                            {tech}
-                          </span>
-                        ))}
+                    <div className="grid md:grid-cols-2 gap-8">
+                      {/* Technologies */}
+                      <div>
+                        <h4 className="font-orbitron text-sm font-bold text-secondary mb-4 flex items-center gap-2">
+                          <Star size={16} />
+                          TECHNOLOGIES
+                        </h4>
+                        <div className="flex flex-wrap gap-2">
+                          {exp.technologies.map((tech, techIndex) => (
+                            <span
+                              key={tech}
+                              className="px-3 py-2 bg-gradient-to-r from-primary/10 to-secondary/10 border border-primary/20 rounded-xl text-sm font-rajdhani text-foreground hover:border-primary/50 transition-all duration-300 hover:scale-105"
+                              data-aos="zoom-in"
+                              data-aos-delay={500 + index * 200 + techIndex * 50}
+                            >
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
                       </div>
-                    </div>
 
-                    {/* Achievements */}
-                    <div>
-                      <h4 className="font-orbitron text-sm font-bold text-secondary mb-3">
-                        KEY ACHIEVEMENTS:
-                      </h4>
-                      <ul className="space-y-2">
-                        {exp.achievements.map((achievement, achievementIndex) => (
-                          <li
-                            key={achievementIndex}
-                            className="flex items-start gap-3 text-muted-foreground font-rajdhani"
-                            data-aos="fade-left"
-                            data-aos-delay={500 + index * 200 + achievementIndex * 100}
-                          >
-                            <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                            <span>{achievement}</span>
-                          </li>
-                        ))}
-                      </ul>
+                      {/* Achievements */}
+                      <div>
+                        <h4 className="font-orbitron text-sm font-bold text-secondary mb-4 flex items-center gap-2">
+                          <Star size={16} />
+                          KEY ACHIEVEMENTS
+                        </h4>
+                        <ul className="space-y-3">
+                          {exp.achievements.map((achievement, achievementIndex) => (
+                            <li
+                              key={achievementIndex}
+                              className="flex items-start gap-3 text-muted-foreground font-rajdhani"
+                              data-aos="fade-left"
+                              data-aos-delay={600 + index * 200 + achievementIndex * 100}
+                            >
+                              <div className="w-2 h-2 bg-gradient-to-r from-primary to-secondary rounded-full mt-2 flex-shrink-0"></div>
+                              <span className="leading-relaxed">{achievement}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
                   </div>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

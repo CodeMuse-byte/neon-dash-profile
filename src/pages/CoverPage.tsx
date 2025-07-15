@@ -1,6 +1,6 @@
 
 import { useEffect } from 'react';
-import { ArrowRight, User } from 'lucide-react';
+import { ArrowRight, User, Cpu } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const CoverPage = () => {
@@ -27,11 +27,35 @@ const CoverPage = () => {
 
   return (
     <div className="min-h-screen bg-background relative overflow-hidden flex items-center justify-center">
-      {/* Simplified Background */}
+      {/* Floating Stars Background */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-muted"></div>
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
         <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-secondary/10 rounded-full blur-3xl"></div>
+        {[...Array(40)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-1 h-1 bg-accent/30 rounded-full animate-float"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 10}s`,
+              animationDuration: `${10 + Math.random() * 5}s`,
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Glowing Microchip Icon */}
+      <div className="absolute top-8 right-8 z-20">
+        <div className="group relative p-4 bg-card/80 backdrop-blur-sm border border-border rounded-xl transition-all duration-300 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/20">
+          <Cpu className="w-6 h-6 text-primary transition-colors duration-300 group-hover:text-secondary animate-pulse" />
+          <div className="absolute -top-12 right-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+            <div className="bg-card border border-border rounded-lg px-3 py-2 text-sm font-orbitron text-primary whitespace-nowrap">
+              👾 Hi!
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className="container mx-auto px-6 z-10">
@@ -82,19 +106,22 @@ const CoverPage = () => {
             </div>
           </div>
 
-          {/* Avatar Illustration */}
+          {/* Avatar Illustration - Flexible Container */}
           <div className="animate-on-load opacity-0 scale-95 transition-all duration-700 ease-out lg:justify-self-end">
-            <div className="relative w-80 h-80 mx-auto lg:mx-0">
-              <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 via-secondary/10 to-accent/20 rounded-full blur-2xl"></div>
+            <div className="relative flex items-center justify-center">
+              <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 via-secondary/10 to-accent/20 rounded-full blur-2xl scale-110"></div>
               
-              <div className="relative w-full h-full border border-border rounded-full overflow-hidden bg-gradient-to-tr from-muted to-card">
-                <img
-                  src="/lovable-uploads/77bc05c6-2eec-4cd4-be5b-029327875129.png"
-                  alt="Developer Avatar"
-                  className="w-full h-full object-cover"
-                />
-                
-                <div className="absolute inset-0 bg-gradient-to-tr from-primary/5 via-transparent to-secondary/5 rounded-full"></div>
+              {/* Flexible Profile Image Container */}
+              <div className="relative w-full max-w-sm aspect-square mx-auto lg:mx-0">
+                <div className="relative w-full h-full border border-border rounded-full overflow-hidden bg-gradient-to-tr from-muted to-card">
+                  <img
+                    src="/lovable-uploads/77bc05c6-2eec-4cd4-be5b-029327875129.png"
+                    alt="Developer Avatar"
+                    className="w-full h-full object-cover"
+                  />
+                  
+                  <div className="absolute inset-0 bg-gradient-to-tr from-primary/5 via-transparent to-secondary/5 rounded-full"></div>
+                </div>
               </div>
             </div>
           </div>
