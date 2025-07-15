@@ -2,6 +2,7 @@
 import { useEffect } from 'react';
 import { ArrowRight, User, Cpu } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import Background3D from '../components/Background3D';
 
 const CoverPage = () => {
   const navigate = useNavigate();
@@ -27,38 +28,25 @@ const CoverPage = () => {
 
   return (
     <div className="min-h-screen bg-background relative overflow-hidden flex items-center justify-center">
-      {/* Enhanced Floating Stars Background */}
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-muted"></div>
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-secondary/10 rounded-full blur-3xl"></div>
+      {/* 3D Background */}
+      <Background3D />
+      
+      {/* Enhanced Floating Stars Background Overlay */}
+      <div className="absolute inset-0 z-10">
+        <div className="absolute inset-0 bg-gradient-to-br from-background/80 via-background/60 to-muted/40"></div>
         
-        {/* More small stars */}
-        {[...Array(80)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute bg-accent/30 rounded-full animate-float"
-            style={{
-              width: `${Math.random() * 3 + 1}px`,
-              height: `${Math.random() * 3 + 1}px`,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 10}s`,
-              animationDuration: `${10 + Math.random() * 5}s`,
-            }}
-          />
-        ))}
-        
-        {/* Additional tiny stars */}
+        {/* Additional small stars for layering */}
         {[...Array(40)].map((_, i) => (
           <div
-            key={`tiny-${i}`}
-            className="absolute w-0.5 h-0.5 bg-primary/20 rounded-full animate-pulse"
+            key={`overlay-${i}`}
+            className="absolute bg-accent/20 rounded-full animate-float"
             style={{
+              width: `${Math.random() * 2 + 1}px`,
+              height: `${Math.random() * 2 + 1}px`,
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 5}s`,
-              animationDuration: `${2 + Math.random() * 3}s`,
+              animationDelay: `${Math.random() * 8}s`,
+              animationDuration: `${8 + Math.random() * 4}s`,
             }}
           />
         ))}
@@ -76,7 +64,7 @@ const CoverPage = () => {
         </div>
       </div>
 
-      <div className="container mx-auto px-6 z-10">
+      <div className="container mx-auto px-6 z-20">
         <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
           {/* Main Content */}
           <div className="space-y-8 text-center lg:text-left">
