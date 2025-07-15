@@ -1,10 +1,14 @@
-
-import { Download, ExternalLink, ArrowLeft, Home, User, Code, Briefcase, Mail } from 'lucide-react';
+import { Download, ExternalLink, Home, User, Code, Briefcase, Mail } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import GlowButton from './GlowButton';
+import ThemeToggle from './ThemeToggle';
+import SocialIcons from './SocialIcons';
+import GeometricBackground from './GeometricBackground';
 
 const HeroSection = () => {
   const navigate = useNavigate();
+  const [isAvatarHovered, setIsAvatarHovered] = useState(false);
 
   const navItems = [
     { id: 'home', label: 'Home', icon: Home, active: true },
@@ -23,77 +27,82 @@ const HeroSection = () => {
 
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center py-20">
-      {/* Floating Stars Background */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-muted/50"></div>
-        {[...Array(50)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-1 h-1 bg-primary/30 rounded-full animate-float"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 6}s`,
-              animationDuration: `${6 + Math.random() * 4}s`,
-            }}
-          />
-        ))}
-      </div>
-      
-      {/* Back Button */}
-      <button
-        onClick={() => navigate('/cover')}
-        className="absolute top-8 left-8 z-20 p-3 bg-card/80 backdrop-blur-sm border border-border rounded-lg text-foreground hover:bg-card hover:border-primary/50 transition-all duration-300 group"
-      >
-        <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
-      </button>
+      {/* Enhanced Geometric Background */}
+      <GeometricBackground />
       
       <div className="container mx-auto px-4 z-10 max-w-full">
         <div className="grid grid-cols-12 gap-4 lg:gap-8 items-center min-h-[80vh]">
-          {/* Left Sidebar Navigation - Far Left */}
-          <div className="col-span-12 lg:col-span-2 xl:col-span-2" data-aos="fade-right" data-aos-delay="100">
-            <div className="bg-card/80 backdrop-blur-sm rounded-2xl p-4 lg:p-6 border border-border">
-              {/* Profile */}
-              <div className="text-center mb-6 lg:mb-8" data-aos="fade-up" data-aos-delay="200">
-                <div className="w-16 h-16 lg:w-20 lg:h-20 mx-auto mb-3 lg:mb-4 border border-border rounded-full overflow-hidden">
-                  <img
-                    src="/lovable-uploads/77bc05c6-2eec-4cd4-be5b-029327875129.png"
-                    alt="Alex Chen"
-                    className="w-full h-full object-cover"
-                  />
+          {/* Modern Left Sidebar - Sticky */}
+          <div className="col-span-12 lg:col-span-3 xl:col-span-3" data-aos="fade-right" data-aos-delay="100">
+            <div className="sticky top-8 bg-card/60 backdrop-blur-lg rounded-2xl p-6 border border-border/50 shadow-2xl shadow-black/20">
+              {/* Avatar Section */}
+              <div className="text-center mb-8" data-aos="fade-up" data-aos-delay="200">
+                <div 
+                  className="relative w-20 h-20 mx-auto mb-4 cursor-pointer transition-transform duration-300 hover:scale-105"
+                  onMouseEnter={() => setIsAvatarHovered(true)}
+                  onMouseLeave={() => setIsAvatarHovered(false)}
+                >
+                  <div className="w-full h-full border-2 border-primary/30 rounded-full overflow-hidden shadow-lg shadow-primary/20">
+                    <img
+                      src="/lovable-uploads/77bc05c6-2eec-4cd4-be5b-029327875129.png"
+                      alt="Alex Chen"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  {/* Waving hand emoji overlay */}
+                  <div className={`absolute -top-1 -right-1 text-2xl transition-all duration-300 ${
+                    isAvatarHovered ? 'opacity-100 scale-100 rotate-12' : 'opacity-0 scale-75'
+                  }`}>
+                    👋
+                  </div>
                 </div>
-                <h3 className="font-orbitron text-sm lg:text-lg font-bold text-foreground">Alex Chen</h3>
-                <p className="text-xs lg:text-sm text-muted-foreground">Senior Software Engineer</p>
+                
+                {/* Name and Role */}
+                <h3 className="font-orbitron text-xl font-bold text-foreground mb-2 tracking-wide">
+                  Alex Chen
+                </h3>
+                <p className="text-sm text-muted-foreground font-rajdhani font-light tracking-wider">
+                  Senior Software Engineer
+                </p>
               </div>
 
-              {/* Navigation */}
-              <nav className="space-y-1 lg:space-y-2">
+              {/* Social Icons */}
+              <div className="mb-8" data-aos="fade-up" data-aos-delay="300">
+                <SocialIcons />
+              </div>
+
+              {/* Navigation Menu */}
+              <nav className="space-y-2 mb-8">
                 {navItems.map((item, index) => {
                   const Icon = item.icon;
                   return (
                     <button
                       key={item.id}
                       onClick={() => scrollToSection(item.id)}
-                      className={`flex items-center justify-between w-full p-2 lg:p-3 rounded-lg transition-all duration-300 ${
+                      className={`flex items-center w-full p-3 rounded-xl transition-all duration-300 group ${
                         item.active 
-                          ? 'bg-primary text-primary-foreground' 
-                          : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
+                          ? 'bg-primary/20 text-primary border border-primary/30 shadow-md shadow-primary/10' 
+                          : 'text-muted-foreground hover:text-foreground hover:bg-muted/30 hover:border-muted-foreground/20 border border-transparent'
                       }`}
                       data-aos="fade-up" 
-                      data-aos-delay={300 + index * 50}
+                      data-aos-delay={400 + index * 50}
                     >
-                      <div className="flex items-center space-x-2 lg:space-x-3">
-                        <Icon size={16} className="lg:w-[18px] lg:h-[18px]" />
-                        <span className="font-rajdhani text-sm lg:text-base">{item.label}</span>
-                      </div>
+                      <Icon className="w-5 h-5 mr-4 transition-transform duration-300 group-hover:scale-110" />
+                      <span className="font-rajdhani text-base font-medium tracking-wide">
+                        {item.label}
+                      </span>
                     </button>
                   );
                 })}
               </nav>
 
-              {/* Hire Me Button */}
-              <div className="mt-6 lg:mt-8" data-aos="fade-up" data-aos-delay="700">
-                <button className="w-full py-2 lg:py-3 bg-gradient-to-r from-primary to-secondary text-primary-foreground rounded-lg font-rajdhani font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/50 text-sm lg:text-base">
+              {/* Theme Toggle and Hire Button */}
+              <div className="space-y-4" data-aos="fade-up" data-aos-delay="700">
+                <div className="flex justify-center">
+                  <ThemeToggle />
+                </div>
+                
+                <button className="w-full py-3 bg-gradient-to-r from-primary to-secondary text-primary-foreground rounded-xl font-rajdhani font-semibold transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-primary/30 text-base tracking-wide">
                   ✈ Hire Me
                 </button>
               </div>
@@ -101,7 +110,7 @@ const HeroSection = () => {
           </div>
 
           {/* Main Content - Centered */}
-          <div className="col-span-12 lg:col-span-7 xl:col-span-7 flex flex-col justify-center" data-aos="fade-up" data-aos-delay="400">
+          <div className="col-span-12 lg:col-span-6 xl:col-span-6 flex flex-col justify-center" data-aos="fade-up" data-aos-delay="400">
             <div className="space-y-6 lg:space-y-8 text-center lg:text-left px-4 lg:px-8">
               <div data-aos="fade-up" data-aos-delay="500">
                 <p className="font-rajdhani text-base lg:text-lg text-muted-foreground uppercase tracking-wider">
