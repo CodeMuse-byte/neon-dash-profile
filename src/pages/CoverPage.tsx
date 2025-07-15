@@ -1,3 +1,4 @@
+
 import { useEffect } from 'react';
 import { ArrowRight, User } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
@@ -26,24 +27,11 @@ const CoverPage = () => {
 
   return (
     <div className="min-h-screen bg-background relative overflow-hidden flex items-center justify-center">
-      {/* Tech Background with Glow */}
+      {/* Simplified Background */}
       <div className="absolute inset-0">
-        {/* Gradient Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-muted"></div>
-        
-        {/* Subtle Tech Grid */}
-        <div className="absolute inset-0 grid-bg opacity-10"></div>
-        
-        {/* Glowing Orbs */}
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/20 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-secondary/15 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 right-1/3 w-32 h-32 bg-accent/20 rounded-full blur-2xl"></div>
-        
-        {/* Floating Tech Elements */}
-        <div className="absolute top-1/6 left-1/6 w-2 h-2 bg-primary rounded-full animate-pulse"></div>
-        <div className="absolute top-1/3 right-1/5 w-1 h-1 bg-secondary rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute bottom-1/3 left-1/3 w-1.5 h-1.5 bg-accent rounded-full animate-pulse" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute bottom-1/6 right-1/6 w-1 h-1 bg-primary rounded-full animate-pulse" style={{ animationDelay: '3s' }}></div>
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-secondary/10 rounded-full blur-3xl"></div>
       </div>
 
       <div className="container mx-auto px-6 z-10">
@@ -52,7 +40,7 @@ const CoverPage = () => {
           <div className="space-y-8 text-center lg:text-left">
             {/* Title */}
             <div className="animate-on-load opacity-0 translate-y-8 transition-all duration-700 ease-out">
-              <h1 className="font-orbitron text-5xl lg:text-7xl font-bold text-glow">
+              <h1 className="font-orbitron text-5xl lg:text-7xl font-bold">
                 <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
                   THE DEV
                 </span>
@@ -80,7 +68,6 @@ const CoverPage = () => {
                   <span>Start Story</span>
                   <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
                 </div>
-                <div className="absolute inset-0 bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-100 rounded-lg transition-opacity duration-300 -z-10"></div>
               </button>
 
               <button
@@ -98,34 +85,19 @@ const CoverPage = () => {
           {/* Avatar Illustration */}
           <div className="animate-on-load opacity-0 scale-95 transition-all duration-700 ease-out lg:justify-self-end">
             <div className="relative w-80 h-80 mx-auto lg:mx-0">
-              {/* Glow Background */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-primary/30 via-secondary/20 to-accent/30 rounded-full blur-2xl"></div>
+              <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 via-secondary/10 to-accent/20 rounded-full blur-2xl"></div>
               
-              {/* Avatar Container */}
-              <div className="relative w-full h-full cyber-border rounded-full overflow-hidden bg-gradient-to-tr from-muted to-card">
+              <div className="relative w-full h-full border border-border rounded-full overflow-hidden bg-gradient-to-tr from-muted to-card">
                 <img
                   src="/lovable-uploads/77bc05c6-2eec-4cd4-be5b-029327875129.png"
                   alt="Developer Avatar"
                   className="w-full h-full object-cover"
                 />
                 
-                {/* Overlay Effect */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 via-transparent to-secondary/10 rounded-full"></div>
+                <div className="absolute inset-0 bg-gradient-to-tr from-primary/5 via-transparent to-secondary/5 rounded-full"></div>
               </div>
-
-              {/* Floating Elements */}
-              <div className="absolute -top-4 -right-4 w-8 h-8 bg-primary rounded-full animate-pulse-glow"></div>
-              <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-secondary rounded-full animate-pulse-glow" style={{ animationDelay: '1s' }}></div>
-              <div className="absolute top-1/2 -left-8 w-4 h-4 bg-accent rounded-full animate-pulse-glow" style={{ animationDelay: '2s' }}></div>
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce opacity-50">
-        <div className="w-6 h-10 border-2 border-primary rounded-full flex justify-center">
-          <div className="w-1 h-3 bg-primary rounded-full mt-2 animate-pulse"></div>
         </div>
       </div>
     </div>

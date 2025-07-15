@@ -1,18 +1,32 @@
 
-import { Download, ExternalLink, ArrowLeft } from 'lucide-react';
+import { Download, ExternalLink, ArrowLeft, Home, User, Code, Briefcase, Mail } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import GlowButton from './GlowButton';
-import HeroBackground from './HeroBackground';
 
 const HeroSection = () => {
   const navigate = useNavigate();
 
+  const navItems = [
+    { id: 'home', label: 'Home', icon: Home, active: true },
+    { id: 'about', label: 'About', icon: User },
+    { id: 'skills', label: 'Skills', icon: Code },
+    { id: 'projects', label: 'Projects', icon: Briefcase },
+    { id: 'contact', label: 'Contact', icon: Mail },
+  ];
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <HeroBackground />
-      
-      {/* Grid overlay */}
-      <div className="absolute inset-0 grid-bg opacity-20" />
+    <section id="home" className="relative min-h-screen flex items-center justify-center py-20">
+      {/* Simplified Background */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-muted/50"></div>
+      </div>
       
       {/* Back Button */}
       <button
@@ -22,14 +36,14 @@ const HeroSection = () => {
         <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
       </button>
       
-      <div className="container mx-auto px-6 z-10">
+      <div className="container mx-auto px-6 z-10 max-w-7xl">
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-center">
           {/* Left Sidebar Navigation */}
           <div className="lg:col-span-3 space-y-6" data-aos="fade-right" data-aos-delay="100">
             <div className="bg-card/80 backdrop-blur-sm rounded-2xl p-6 border border-border">
               {/* Profile */}
               <div className="text-center mb-8" data-aos="fade-up" data-aos-delay="200">
-                <div className="w-20 h-20 mx-auto mb-4 cyber-border rounded-full overflow-hidden">
+                <div className="w-20 h-20 mx-auto mb-4 border border-border rounded-full overflow-hidden">
                   <img
                     src="/lovable-uploads/77bc05c6-2eec-4cd4-be5b-029327875129.png"
                     alt="Alex Chen"
@@ -42,33 +56,27 @@ const HeroSection = () => {
 
               {/* Navigation */}
               <nav className="space-y-2">
-                {[
-                  { name: 'About Us', active: true },
-                  { name: 'Portfolio', count: '16' },
-                  { name: 'Services & Pricing' },
-                  { name: 'Resume' },
-                  { name: 'Products' },
-                  { name: 'Blog' },
-                  { name: 'Contact' }
-                ].map((item, index) => (
-                  <div 
-                    key={item.name}
-                    className={`flex items-center justify-between p-3 rounded-lg transition-all duration-300 ${
-                      item.active 
-                        ? 'bg-primary text-primary-foreground' 
-                        : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
-                    }`}
-                    data-aos="fade-up" 
-                    data-aos-delay={300 + index * 50}
-                  >
-                    <span className="font-rajdhani">{item.name}</span>
-                    {item.count && (
-                      <span className="text-xs bg-background/20 px-2 py-1 rounded">
-                        {item.count}
-                      </span>
-                    )}
-                  </div>
-                ))}
+                {navItems.map((item, index) => {
+                  const Icon = item.icon;
+                  return (
+                    <button
+                      key={item.id}
+                      onClick={() => scrollToSection(item.id)}
+                      className={`flex items-center justify-between w-full p-3 rounded-lg transition-all duration-300 ${
+                        item.active 
+                          ? 'bg-primary text-primary-foreground' 
+                          : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
+                      }`}
+                      data-aos="fade-up" 
+                      data-aos-delay={300 + index * 50}
+                    >
+                      <div className="flex items-center space-x-3">
+                        <Icon size={18} />
+                        <span className="font-rajdhani">{item.label}</span>
+                      </div>
+                    </button>
+                  );
+                })}
               </nav>
 
               {/* Hire Me Button */}
@@ -91,7 +99,7 @@ const HeroSection = () => {
               
               <div data-aos="fade-up" data-aos-delay="600">
                 <h1 className="font-orbitron text-5xl lg:text-7xl font-bold leading-tight">
-                  <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent text-glow">
+                  <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
                     Designer
                   </span>
                   <span className="text-foreground">|</span>
@@ -158,34 +166,20 @@ const HeroSection = () => {
 
           {/* Right Avatar */}
           <div className="lg:col-span-3 flex justify-center" data-aos="fade-left" data-aos-delay="600">
-            <div className="relative animate-float">
+            <div className="relative">
               <div className="relative w-80 h-80 lg:w-96 lg:h-96">
-                {/* Character Illustration */}
-                <div className="relative w-full h-full rounded-2xl overflow-hidden bg-gradient-to-br from-primary/10 to-secondary/10 border border-border">
+                <div className="relative w-full h-full rounded-2xl overflow-hidden bg-gradient-to-br from-primary/5 to-secondary/5 border border-border">
                   <img
                     src="/lovable-uploads/77bc05c6-2eec-4cd4-be5b-029327875129.png"
                     alt="Developer Character"
                     className="w-full h-full object-cover"
                   />
                   
-                  {/* Glow overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 via-transparent to-secondary/20" />
+                  <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 via-transparent to-secondary/10" />
                 </div>
-
-                {/* Floating elements */}
-                <div className="absolute -top-4 -right-4 w-8 h-8 bg-primary rounded-full animate-pulse-glow" />
-                <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-secondary rounded-full animate-pulse-glow" style={{ animationDelay: '1s' }} />
-                <div className="absolute top-1/2 -right-8 w-4 h-4 bg-accent rounded-full animate-pulse-glow" style={{ animationDelay: '2s' }} />
               </div>
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce" data-aos="fade-up" data-aos-delay="1200">
-        <div className="w-6 h-10 border-2 border-primary rounded-full flex justify-center">
-          <div className="w-1 h-3 bg-primary rounded-full mt-2 animate-pulse" />
         </div>
       </div>
     </section>
