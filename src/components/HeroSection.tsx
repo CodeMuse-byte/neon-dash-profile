@@ -1,3 +1,4 @@
+
 import { Download, ExternalLink, Home, User, Code, Briefcase, Mail } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
@@ -96,12 +97,17 @@ const HeroSection = () => {
                 })}
               </nav>
 
-              {/* Theme Toggle and Hire Button */}
-              <div className="space-y-4" data-aos="fade-up" data-aos-delay="700">
+              {/* Projects Label - Vertical */}
+              <div className="mb-8" data-aos="fade-up" data-aos-delay="700">
                 <div className="flex justify-center">
-                  <ThemeToggle />
+                  <div className="writing-mode-vertical text-sm font-rajdhani font-light text-muted-foreground tracking-[0.2em] transform rotate-180">
+                    PROJECTS
+                  </div>
                 </div>
-                
+              </div>
+
+              {/* Hire Button */}
+              <div className="space-y-4" data-aos="fade-up" data-aos-delay="700">
                 <button className="w-full py-3 bg-gradient-to-r from-primary to-secondary text-primary-foreground rounded-xl font-rajdhani font-semibold transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-primary/30 text-base tracking-wide">
                   ✈ Hire Me
                 </button>
@@ -186,10 +192,15 @@ const HeroSection = () => {
           </div>
 
           {/* Right Avatar - Far Right */}
-          <div className="col-span-12 lg:col-span-3 xl:col-span-3 flex justify-center lg:justify-end" data-aos="fade-left" data-aos-delay="600">
+          <div className="col-span-12 lg:col-span-3 xl:col-span-3 flex justify-center lg:justify-end relative" data-aos="fade-left" data-aos-delay="600">
+            {/* Theme Toggle - Top Right */}
+            <div className="absolute top-0 right-0 z-10">
+              <ThemeToggle />
+            </div>
+            
             <div className="relative">
-              <div className="relative w-64 h-64 lg:w-80 lg:h-80 xl:w-96 xl:h-96">
-                <div className="relative w-full h-full rounded-2xl overflow-hidden bg-gradient-to-br from-primary/5 to-secondary/5 border border-border">
+              <div className="relative w-64 h-64 lg:w-80 lg:h-80 xl:w-96 xl:h-96 animate-float">
+                <div className="relative w-full h-full rounded-2xl overflow-hidden bg-gradient-to-br from-primary/5 to-secondary/5 border border-border transform transition-all duration-700 hover:scale-105 hover:rotate-2">
                   <img
                     src="/lovable-uploads/77bc05c6-2eec-4cd4-be5b-029327875129.png"
                     alt="Developer Character"

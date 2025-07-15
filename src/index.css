@@ -103,6 +103,10 @@ All colors MUST be HSL.
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     mask-composite: exclude;
   }
+
+  .writing-mode-vertical {
+    writing-mode: vertical-lr;
+  }
 }
 
 @layer utilities {
@@ -154,6 +158,24 @@ All colors MUST be HSL.
     75% { 
       transform: translateY(-6px) translateX(6px) rotate(1deg); 
       opacity: 0.5;
+    }
+  }
+
+  @keyframes rotate3d {
+    0% {
+      transform: rotateY(0deg) rotateX(0deg);
+    }
+    25% {
+      transform: rotateY(90deg) rotateX(5deg);
+    }
+    50% {
+      transform: rotateY(180deg) rotateX(0deg);
+    }
+    75% {
+      transform: rotateY(270deg) rotateX(-5deg);
+    }
+    100% {
+      transform: rotateY(360deg) rotateX(0deg);
     }
   }
 }

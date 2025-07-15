@@ -6,6 +6,9 @@ const themes = [
   { name: 'Pink', primary: '320 100% 50%', secondary: '195 100% 50%' },
   { name: 'Blue', primary: '220 100% 50%', secondary: '280 100% 50%' },
   { name: 'Purple', primary: '280 100% 50%', secondary: '320 100% 50%' },
+  { name: 'Green', primary: '120 100% 40%', secondary: '160 100% 45%' },
+  { name: 'Red', primary: '0 100% 50%', secondary: '20 100% 55%' },
+  { name: 'Yellow', primary: '45 100% 50%', secondary: '60 100% 50%' },
 ];
 
 const ThemeToggle = () => {
@@ -33,7 +36,7 @@ const ThemeToggle = () => {
       </button>
       
       {isOpen && (
-        <div className="absolute bottom-full left-0 mb-2 bg-card/90 backdrop-blur-sm border border-border rounded-lg p-2 shadow-lg">
+        <div className="absolute bottom-full right-0 mb-2 bg-card/90 backdrop-blur-sm border border-border rounded-lg p-2 shadow-lg">
           <div className="space-y-1">
             {themes.map((theme, index) => (
               <button
