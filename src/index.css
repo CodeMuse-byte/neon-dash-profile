@@ -122,6 +122,14 @@ All colors MUST be HSL.
     animation: float 6s ease-in-out infinite;
   }
 
+  .animate-3d-rotate {
+    animation: rotate3d 8s linear infinite;
+  }
+
+  .animate-bounce-3d {
+    animation: bounce3d 4s ease-in-out infinite;
+  }
+
   @keyframes glow {
     from {
       box-shadow: 0 0 5px hsl(var(--neon-pink)), 0 0 10px hsl(var(--neon-pink));
@@ -176,6 +184,21 @@ All colors MUST be HSL.
     }
     100% {
       transform: rotateY(360deg) rotateX(0deg);
+    }
+  }
+
+  @keyframes bounce3d {
+    0%, 100% {
+      transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px);
+    }
+    25% {
+      transform: perspective(1000px) rotateX(10deg) rotateY(5deg) translateZ(20px);
+    }
+    50% {
+      transform: perspective(1000px) rotateX(-5deg) rotateY(-10deg) translateZ(10px);
+    }
+    75% {
+      transform: perspective(1000px) rotateX(5deg) rotateY(15deg) translateZ(30px);
     }
   }
 }

@@ -16,7 +16,7 @@ const HeroSection = () => {
     { id: 'about', label: 'About', icon: User },
     { id: 'skills', label: 'Skills', icon: Code },
     { id: 'projects', label: 'Projects', icon: Briefcase },
-    { id: 'work', label: 'Work', icon: Briefcase },
+    { id: 'testimonials', label: 'Testimonials', icon: Briefcase },
     { id: 'contact', label: 'Contact', icon: Mail },
   ];
 
@@ -38,83 +38,9 @@ const HeroSection = () => {
       
       <div className="container mx-auto px-4 z-10 max-w-full">
         <div className="grid grid-cols-12 gap-4 lg:gap-8 items-center min-h-[80vh]">
-          {/* Modern Left Sidebar - Removed margins */}
-          <div className="col-span-12 lg:col-span-3 xl:col-span-3" data-aos="fade-right" data-aos-delay="100">
-            <div className="sticky top-8 bg-card/60 backdrop-blur-lg rounded-2xl p-6 border border-border/50 shadow-2xl shadow-black/20">
-              {/* Avatar Section - Clickable */}
-              <div className="text-center mb-8" data-aos="fade-up" data-aos-delay="200">
-                <div 
-                  className="relative w-20 h-20 mx-auto mb-4 cursor-pointer transition-transform duration-300 hover:scale-105"
-                  onMouseEnter={() => setIsAvatarHovered(true)}
-                  onMouseLeave={() => setIsAvatarHovered(false)}
-                  onClick={handlePhotoClick}
-                >
-                  <div className="w-full h-full border-2 border-primary/30 rounded-full overflow-hidden shadow-lg shadow-primary/20">
-                    <img
-                      src="/lovable-uploads/77bc05c6-2eec-4cd4-be5b-029327875129.png"
-                      alt="Alex Chen"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  {/* Waving hand emoji overlay */}
-                  <div className={`absolute -top-1 -right-1 text-2xl transition-all duration-300 ${
-                    isAvatarHovered ? 'opacity-100 scale-100 rotate-12' : 'opacity-0 scale-75'
-                  }`}>
-                    👋
-                  </div>
-                </div>
-                
-                {/* Name and Role */}
-                <h3 className="font-orbitron text-xl font-bold text-foreground mb-2 tracking-wide">
-                  Alex Chen
-                </h3>
-                <p className="text-sm text-muted-foreground font-rajdhani font-light tracking-wider">
-                  Senior Software Engineer
-                </p>
-              </div>
-
-              {/* Social Icons */}
-              <div className="mb-8" data-aos="fade-up" data-aos-delay="300">
-                <SocialIcons />
-              </div>
-
-              {/* Navigation Menu */}
-              <nav className="space-y-2 mb-8">
-                {navItems.map((item, index) => {
-                  const Icon = item.icon;
-                  return (
-                    <button
-                      key={item.id}
-                      onClick={() => scrollToSection(item.id)}
-                      className={`flex items-center w-full p-3 rounded-xl transition-all duration-300 group ${
-                        item.active 
-                          ? 'bg-primary/20 text-primary border border-primary/30 shadow-md shadow-primary/10' 
-                          : 'text-muted-foreground hover:text-foreground hover:bg-muted/30 hover:border-muted-foreground/20 border border-transparent'
-                      }`}
-                      data-aos="fade-up" 
-                      data-aos-delay={400 + index * 50}
-                    >
-                      <Icon className="w-5 h-5 mr-4 transition-transform duration-300 group-hover:scale-110" />
-                      <span className="font-rajdhani text-base font-medium tracking-wide">
-                        {item.label}
-                      </span>
-                    </button>
-                  );
-                })}
-              </nav>
-
-              {/* Hire Button */}
-              <div className="space-y-4" data-aos="fade-up" data-aos-delay="700">
-                <button className="w-full py-3 bg-gradient-to-r from-primary to-secondary text-primary-foreground rounded-xl font-rajdhani font-semibold transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-primary/30 text-base tracking-wide">
-                  ✈ Hire Me
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/* Main Content - Centered */}
-          <div className="col-span-12 lg:col-span-6 xl:col-span-6 flex flex-col justify-center" data-aos="fade-up" data-aos-delay="400">
-            <div className="space-y-6 lg:space-y-8 text-center lg:text-left px-4 lg:px-8">
+          {/* Main Content - Full Width Center */}
+          <div className="col-span-12 lg:col-span-8 xl:col-span-8 flex flex-col justify-center mx-auto" data-aos="fade-up" data-aos-delay="400">
+            <div className="space-y-6 lg:space-y-8 text-center px-4 lg:px-8">
               <div data-aos="fade-up" data-aos-delay="500">
                 <p className="font-rajdhani text-base lg:text-lg text-muted-foreground uppercase tracking-wider">
                   HI, I'M A FREELANCER
@@ -131,7 +57,7 @@ const HeroSection = () => {
               </div>
 
               <div data-aos="fade-up" data-aos-delay="700">
-                <p className="text-base lg:text-lg text-muted-foreground font-rajdhani leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                <p className="text-base lg:text-lg text-muted-foreground font-rajdhani leading-relaxed max-w-2xl mx-auto">
                   I'm a software engineer specializing in scalable web apps.
                   Explore my{' '}
                   <span className="text-primary underline cursor-pointer hover:text-secondary transition-colors">
@@ -150,7 +76,7 @@ const HeroSection = () => {
               </div>
 
               {/* Action Buttons */}
-              <div className="flex flex-col sm:flex-row gap-3 lg:gap-4 pt-4 justify-center lg:justify-start" data-aos="fade-up" data-aos-delay="800">
+              <div className="flex flex-col sm:flex-row gap-3 lg:gap-4 pt-4 justify-center" data-aos="fade-up" data-aos-delay="800">
                 <GlowButton 
                   variant="primary" 
                   icon={ExternalLink}
@@ -188,8 +114,8 @@ const HeroSection = () => {
             </div>
           </div>
 
-          {/* Right Avatar - Far Right */}
-          <div className="col-span-12 lg:col-span-3 xl:col-span-3 flex justify-center lg:justify-end relative" data-aos="fade-left" data-aos-delay="600">
+          {/* Right Avatar */}
+          <div className="col-span-12 lg:col-span-4 xl:col-span-4 flex justify-center lg:justify-end relative" data-aos="fade-left" data-aos-delay="600">
             {/* Theme Toggle - Top Right */}
             <div className="absolute top-0 right-0 z-10">
               <ThemeToggle />
