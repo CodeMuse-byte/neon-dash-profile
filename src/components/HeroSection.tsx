@@ -36,6 +36,43 @@ const HeroSection = () => {
       {/* Enhanced Geometric Background */}
       <GeometricBackground />
       
+      {/* Sticky Left Navigation */}
+      <div className="fixed left-6 top-1/2 -translate-y-1/2 z-50 hidden lg:block">
+        <div className="bg-card/80 backdrop-blur-sm border border-border rounded-2xl p-4 shadow-lg">
+          <nav className="flex flex-col space-y-4">
+            {navItems.map((item) => {
+              const Icon = item.icon;
+              return (
+                <button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  className={`
+                    relative p-3 rounded-xl transition-all duration-300 group
+                    ${item.active 
+                      ? 'bg-primary text-primary-foreground shadow-lg' 
+                      : 'hover:bg-muted text-muted-foreground hover:text-foreground'
+                    }
+                  `}
+                  title={item.label}
+                >
+                  <Icon size={20} />
+                  
+                  {/* Tooltip */}
+                  <span className="absolute left-full ml-3 px-2 py-1 bg-card border border-border rounded-lg text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+                    {item.label}
+                  </span>
+                </button>
+              );
+            })}
+          </nav>
+          
+          {/* Social Icons in Sidebar */}
+          <div className="mt-6 pt-4 border-t border-border">
+            <SocialIcons />
+          </div>
+        </div>
+      </div>
+      
       <div className="container mx-auto px-4 z-10 max-w-full">
         <div className="grid grid-cols-12 gap-4 lg:gap-8 items-center min-h-[80vh]">
           {/* Main Content - Full Width Center */}

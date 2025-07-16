@@ -19,16 +19,16 @@ All colors MUST be HSL.
     --popover: 220 25% 8%;
     --popover-foreground: 0 0% 88%;
 
-    --primary: 320 100% 50%;
+    --primary: 240 100% 60%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 195 100% 50%;
+    --secondary: 200 100% 55%;
     --secondary-foreground: 0 0% 100%;
 
     --muted: 220 25% 12%;
     --muted-foreground: 0 0% 65%;
 
-    --accent: 281 83% 45%;
+    --accent: 260 75% 65%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
@@ -36,13 +36,9 @@ All colors MUST be HSL.
 
     --border: 220 25% 20%;
     --input: 220 25% 20%;
-    --ring: 320 100% 50%;
+    --ring: 240 100% 60%;
 
     --radius: 0.5rem;
-
-    --neon-pink: 320 100% 50%;
-    --neon-blue: 195 100% 50%;
-    --neon-purple: 281 83% 45%;
   }
 }
 
@@ -68,20 +64,6 @@ All colors MUST be HSL.
     text-shadow: 0 0 10px currentColor;
   }
 
-  .neon-glow {
-    box-shadow: 
-      0 0 5px hsl(var(--neon-pink)),
-      0 0 10px hsl(var(--neon-pink)),
-      0 0 15px hsl(var(--neon-pink));
-  }
-
-  .neon-glow-blue {
-    box-shadow: 
-      0 0 5px hsl(var(--neon-blue)),
-      0 0 10px hsl(var(--neon-blue)),
-      0 0 15px hsl(var(--neon-blue));
-  }
-
   .grid-bg {
     background-image: 
       linear-gradient(hsl(var(--border)) 1px, transparent 1px),
@@ -98,7 +80,7 @@ All colors MUST be HSL.
     position: absolute;
     inset: 0;
     padding: 2px;
-    background: linear-gradient(45deg, hsl(var(--neon-pink)), hsl(var(--neon-blue)));
+    background: linear-gradient(45deg, hsl(var(--primary)), hsl(var(--secondary)));
     border-radius: inherit;
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     mask-composite: exclude;
@@ -110,10 +92,6 @@ All colors MUST be HSL.
 }
 
 @layer utilities {
-  .animate-glow {
-    animation: glow 2s ease-in-out infinite alternate;
-  }
-
   .animate-pulse-glow {
     animation: pulse-glow 3s ease-in-out infinite;
   }
@@ -128,15 +106,6 @@ All colors MUST be HSL.
 
   .animate-bounce-3d {
     animation: bounce3d 4s ease-in-out infinite;
-  }
-
-  @keyframes glow {
-    from {
-      box-shadow: 0 0 5px hsl(var(--neon-pink)), 0 0 10px hsl(var(--neon-pink));
-    }
-    to {
-      box-shadow: 0 0 10px hsl(var(--neon-pink)), 0 0 20px hsl(var(--neon-pink)), 0 0 30px hsl(var(--neon-pink));
-    }
   }
 
   @keyframes pulse-glow {
