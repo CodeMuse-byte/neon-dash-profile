@@ -1,51 +1,47 @@
 
-import { ReactNode } from 'react';
+import React from 'react';
 import { LucideIcon } from 'lucide-react';
 
 interface GlowButtonProps {
-  children: ReactNode;
+  children: React.ReactNode;
   variant?: 'primary' | 'secondary';
   icon?: LucideIcon;
   onClick?: () => void;
-  className?: string;
   href?: string;
+  className?: string;
 }
 
-const GlowButton = ({ 
-  children, 
-  variant = 'primary', 
-  icon: Icon, 
-  onClick, 
+const GlowButton: React.FC<GlowButtonProps> = ({
+  children,
+  variant = 'primary',
+  icon: Icon,
+  onClick,
+  href,
   className = '',
-  href 
-}: GlowButtonProps) => {
+}) => {
   const baseClasses = `
-    group relative px-8 py-4 rounded-lg font-orbitron font-medium 
-    transition-all duration-300 transform hover:scale-105 
-    flex items-center justify-center space-x-2
-    ${className}
+    relative inline-flex items-center justify-center px-6 py-3 font-medium
+    border rounded-lg transition-all duration-300 font-rajdhani
+    hover:scale-105 active:scale-95
   `;
 
   const variantClasses = {
     primary: `
-      bg-gradient-to-r from-primary to-secondary text-white
-      hover:neon-glow hover:shadow-lg
-      border border-primary/20 cyber-border
+      bg-primary text-primary-foreground border-primary
+      hover:bg-primary/90
     `,
     secondary: `
-      bg-transparent border-2 border-primary text-primary
-      hover:bg-primary hover:text-white hover:neon-glow
-      cyber-border
-    `
+      bg-secondary text-secondary-foreground border-border
+      hover:bg-accent
+    `,
   };
+
+  const combinedClasses = `${baseClasses} ${variantClasses[variant]} ${className}`;
 
   const content = (
     <>
-      {Icon && <Icon size={20} className="group-hover:animate-pulse" />}
-      <span className="text-glow">{children}</span>
-      
-      {/* Animated background effect */}
-      <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
+      {Icon && <Icon className="w-4 h-4 mr-2" />}
+      <span>{children}</span>
     </>
   );
 
@@ -53,7 +49,7 @@ const GlowButton = ({
     return (
       <a
         href={href}
-        className={`${baseClasses} ${variantClasses[variant]}`}
+        className={combinedClasses}
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -63,10 +59,7 @@ const GlowButton = ({
   }
 
   return (
-    <button
-      onClick={onClick}
-      className={`${baseClasses} ${variantClasses[variant]}`}
-    >
+    <button onClick={onClick} className={combinedClasses}>
       {content}
     </button>
   );
