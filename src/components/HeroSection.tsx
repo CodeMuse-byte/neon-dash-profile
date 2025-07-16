@@ -38,9 +38,9 @@ const HeroSection = () => {
       
       <div className="container mx-auto px-4 z-10 max-w-full">
         <div className="grid grid-cols-12 gap-4 lg:gap-8 items-center min-h-[80vh]">
-          {/* Modern Left Sidebar - Moved Down */}
-          <div className="col-span-12 lg:col-span-3 xl:col-span-3 mt-20" data-aos="fade-right" data-aos-delay="100">
-            <div className="sticky top-28 bg-card/60 backdrop-blur-lg rounded-2xl p-6 border border-border/50 shadow-2xl shadow-black/20">
+          {/* Modern Left Sidebar - Removed margins */}
+          <div className="col-span-12 lg:col-span-3 xl:col-span-3" data-aos="fade-right" data-aos-delay="100">
+            <div className="sticky top-8 bg-card/60 backdrop-blur-lg rounded-2xl p-6 border border-border/50 shadow-2xl shadow-black/20">
               {/* Avatar Section - Clickable */}
               <div className="text-center mb-8" data-aos="fade-up" data-aos-delay="200">
                 <div 

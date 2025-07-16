@@ -8,15 +8,15 @@ const FloatingGeometry = ({ position, geometry, color }: { position: [number, nu
 
   useFrame((state) => {
     if (meshRef.current) {
-      meshRef.current.rotation.x = state.clock.elapsedTime * 0.5;
-      meshRef.current.rotation.y = state.clock.elapsedTime * 0.3;
-      meshRef.current.position.y = position[1] + Math.sin(state.clock.elapsedTime + position[0]) * 0.5;
+      meshRef.current.rotation.x = state.clock.elapsedTime * 0.1;
+      meshRef.current.rotation.y = state.clock.elapsedTime * 0.05;
+      meshRef.current.position.y = position[1] + Math.sin(state.clock.elapsedTime * 0.3 + position[0]) * 0.2;
     }
   });
 
   return (
     <mesh ref={meshRef} position={position} geometry={geometry}>
-      <meshPhongMaterial color={color} transparent opacity={0.7} />
+      <meshPhongMaterial color={color} transparent opacity={0.4} />
     </mesh>
   );
 };
@@ -26,12 +26,12 @@ const ParticleField = () => {
   
   const particlesGeometry = useMemo(() => {
     const geometry = new THREE.BufferGeometry();
-    const positions = new Float32Array(2000 * 3);
+    const positions = new Float32Array(1000 * 3);
     
-    for (let i = 0; i < 2000; i++) {
-      positions[i * 3] = (Math.random() - 0.5) * 100;
-      positions[i * 3 + 1] = (Math.random() - 0.5) * 100;
-      positions[i * 3 + 2] = (Math.random() - 0.5) * 100;
+    for (let i = 0; i < 1000; i++) {
+      positions[i * 3] = (Math.random() - 0.5) * 80;
+      positions[i * 3 + 1] = (Math.random() - 0.5) * 80;
+      positions[i * 3 + 2] = (Math.random() - 0.5) * 80;
     }
     
     geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
@@ -40,25 +40,25 @@ const ParticleField = () => {
 
   useFrame((state) => {
     if (particlesRef.current) {
-      particlesRef.current.rotation.x = state.clock.elapsedTime * 0.1;
-      particlesRef.current.rotation.y = state.clock.elapsedTime * 0.05;
+      particlesRef.current.rotation.x = state.clock.elapsedTime * 0.02;
+      particlesRef.current.rotation.y = state.clock.elapsedTime * 0.01;
     }
   });
 
   return (
     <points ref={particlesRef} geometry={particlesGeometry}>
-      <pointsMaterial size={0.1} color="#ff007c" transparent opacity={0.6} />
+      <pointsMaterial size={0.05} color="#ff007c" transparent opacity={0.3} />
     </points>
   );
 };
 
 const Background3D = () => {
   const geometries = useMemo(() => ({
-    box: new THREE.BoxGeometry(1, 1, 1),
-    sphere: new THREE.SphereGeometry(0.5, 32, 32),
-    torus: new THREE.TorusGeometry(0.6, 0.2, 16, 100),
-    cone: new THREE.ConeGeometry(0.5, 1, 32),
-    octahedron: new THREE.OctahedronGeometry(0.5),
+    box: new THREE.BoxGeometry(0.8, 0.8, 0.8),
+    sphere: new THREE.SphereGeometry(0.4, 32, 32),
+    torus: new THREE.TorusGeometry(0.5, 0.15, 16, 100),
+    cone: new THREE.ConeGeometry(0.4, 0.8, 32),
+    octahedron: new THREE.OctahedronGeometry(0.4),
   }), []);
 
   const shapes = useMemo(() => [
@@ -74,10 +74,10 @@ const Background3D = () => {
   return (
     <div className="absolute inset-0 -z-10">
       <Canvas camera={{ position: [0, 0, 10], fov: 60 }}>
-        <ambientLight intensity={0.3} />
-        <pointLight position={[20, 20, 20]} intensity={0.8} color="#ff007c" />
-        <pointLight position={[-20, -20, 20]} intensity={0.8} color="#00cfff" />
-        <directionalLight position={[0, 10, 5]} intensity={0.5} color="#ffffff" />
+        <ambientLight intensity={0.2} />
+        <pointLight position={[20, 20, 20]} intensity={0.4} color="#ff007c" />
+        <pointLight position={[-20, -20, 20]} intensity={0.4} color="#00cfff" />
+        <directionalLight position={[0, 10, 5]} intensity={0.3} color="#ffffff" />
         
         <ParticleField />
         

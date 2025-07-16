@@ -1,6 +1,6 @@
 
 import { useEffect } from 'react';
-import { ArrowRight, User, Cpu } from 'lucide-react';
+import { ArrowRight, User } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Background3D from '../components/Background3D';
 
@@ -52,18 +52,6 @@ const CoverPage = () => {
         ))}
       </div>
 
-      {/* Glowing Microchip Icon */}
-      <div className="absolute top-8 right-8 z-20">
-        <div className="group relative p-4 bg-card/80 backdrop-blur-sm border border-border rounded-xl transition-all duration-300 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/20">
-          <Cpu className="w-6 h-6 text-primary transition-colors duration-300 group-hover:text-secondary animate-pulse" />
-          <div className="absolute -top-12 right-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-            <div className="bg-card border border-border rounded-lg px-3 py-2 text-sm font-orbitron text-primary whitespace-nowrap">
-              👾 Hi!
-            </div>
-          </div>
-        </div>
-      </div>
-
       <div className="container mx-auto px-6 z-20">
         <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
           {/* Main Content */}
@@ -112,7 +100,7 @@ const CoverPage = () => {
             </div>
           </div>
 
-          {/* Photo and Avatar Container */}
+          {/* Photo Container */}
           <div className="animate-on-load opacity-0 scale-95 transition-all duration-700 ease-out lg:justify-self-end">
             <div className="relative flex items-center justify-center">
               <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 via-secondary/10 to-accent/20 rounded-full blur-2xl scale-110 animate-pulse"></div>

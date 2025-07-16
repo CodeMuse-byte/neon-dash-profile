@@ -2,10 +2,10 @@
 import { Github, Linkedin, Mail, Twitter } from 'lucide-react';
 
 const socialLinks = [
-  { icon: Github, href: 'https://github.com', label: 'GitHub' },
-  { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
-  { icon: Mail, href: 'mailto:alex@example.com', label: 'Email' },
-  { icon: Twitter, href: 'https://twitter.com', label: 'Twitter' },
+  { icon: Github, href: 'https://github.com', label: 'GitHub', color: 'hover:text-gray-900 dark:hover:text-white' },
+  { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn', color: 'hover:text-blue-600' },
+  { icon: Mail, href: 'mailto:alex@example.com', label: 'Email', color: 'hover:text-red-500' },
+  { icon: Twitter, href: 'https://twitter.com', label: 'Twitter', color: 'hover:text-sky-500' },
 ];
 
 const SocialIcons = () => {
@@ -19,7 +19,7 @@ const SocialIcons = () => {
             href={social.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-2 rounded-lg bg-muted/30 hover:bg-primary/20 text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110"
+            className={`p-2 rounded-lg bg-muted/30 hover:bg-muted/50 text-muted-foreground ${social.color} transition-all duration-300 hover:scale-110`}
             aria-label={social.label}
           >
             <Icon className="w-4 h-4" />
