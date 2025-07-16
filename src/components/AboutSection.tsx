@@ -8,105 +8,88 @@ const AboutSection = () => {
         <div className="text-center mb-16">
           <h2 className="font-orbitron text-4xl lg:text-5xl font-bold text-glow mb-4" data-aos="fade-up">
             <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              Digital Identity
+              About Me
             </span>
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto neon-glow rounded-full" data-aos="fade-up" data-aos-delay="100" />
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-          {/* Left - Personal Info */}
-          <div className="space-y-6" data-aos="fade-right" data-aos-delay="200">
-            <div className="cyber-border bg-card/50 backdrop-blur-sm rounded-lg p-8" data-aos="fade-up" data-aos-delay="300">
-              <h3 className="font-orbitron text-2xl font-bold text-primary mb-6 text-glow">
-                PERSONAL DATA
-              </h3>
-              
-              <div className="space-y-4 font-rajdhani">
-                <div className="flex justify-between items-center py-2 border-b border-border/50" data-aos="fade-up" data-aos-delay="400">
-                  <span className="text-muted-foreground">NAME:</span>
-                  <span className="text-foreground font-medium">Alex Chen</span>
+        <div className="max-w-4xl mx-auto">
+          {/* Main Content Card */}
+          <div className="cyber-border bg-card/30 backdrop-blur-sm rounded-2xl p-8 mb-12" data-aos="fade-up" data-aos-delay="200">
+            <div className="grid lg:grid-cols-2 gap-8 items-center">
+              {/* Left - Profile Image */}
+              <div className="flex justify-center lg:justify-start">
+                <div className="relative w-64 h-64">
+                  <div className="w-full h-full border-2 border-primary/30 rounded-2xl overflow-hidden shadow-xl shadow-primary/20 transform hover:scale-105 transition-all duration-300">
+                    <img
+                      src="/lovable-uploads/77bc05c6-2eec-4cd4-be5b-029327875129.png"
+                      alt="Alex Chen"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  {/* Floating elements */}
+                  <div className="absolute -top-4 -right-4 w-8 h-8 bg-primary/20 rounded-full animate-pulse" />
+                  <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-secondary/20 rounded-full animate-bounce" />
                 </div>
-                
-                <div className="flex justify-between items-center py-2 border-b border-border/50" data-aos="fade-up" data-aos-delay="450">
-                  <span className="text-muted-foreground">ROLE:</span>
-                  <span className="text-secondary text-glow">Full Stack Developer</span>
+              </div>
+
+              {/* Right - About Content */}
+              <div className="space-y-6">
+                <div>
+                  <h3 className="font-orbitron text-2xl font-bold text-primary text-glow mb-4">
+                    Hey, I'm Alex Chen
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed font-rajdhani text-lg mb-4">
+                    A passionate <span className="text-secondary text-glow">Full Stack Developer</span> with 5+ years of experience 
+                    crafting digital experiences that make a difference. I specialize in building scalable 
+                    applications with modern technologies.
+                  </p>
+                  <p className="text-muted-foreground leading-relaxed font-rajdhani text-lg">
+                    When I'm not coding, you can find me exploring the latest in AI, contributing 
+                    to open source projects, or experimenting with new frameworks that shape the future of development.
+                  </p>
                 </div>
-                
-                <div className="flex justify-between items-center py-2 border-b border-border/50" data-aos="fade-up" data-aos-delay="500">
-                  <span className="text-muted-foreground">LOCATION:</span>
-                  <span className="text-foreground font-medium">San Francisco, CA</span>
-                </div>
-                
-                <div className="flex justify-between items-center py-2 border-b border-border/50" data-aos="fade-up" data-aos-delay="550">
-                  <span className="text-muted-foreground">EXPERIENCE:</span>
-                  <span className="text-accent text-glow">5+ Years</span>
-                </div>
-                
-                <div className="flex justify-between items-center py-2" data-aos="fade-up" data-aos-delay="600">
-                  <span className="text-muted-foreground">STATUS:</span>
-                  <div className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-                    <span className="text-green-400 text-glow">Available</span>
+
+                {/* Quick Stats */}
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="text-center p-4 bg-muted/10 rounded-lg border border-border/30">
+                    <div className="text-2xl font-orbitron font-bold text-primary">5+</div>
+                    <div className="text-sm text-muted-foreground font-rajdhani">Years Experience</div>
+                  </div>
+                  <div className="text-center p-4 bg-muted/10 rounded-lg border border-border/30">
+                    <div className="text-2xl font-orbitron font-bold text-secondary">110+</div>
+                    <div className="text-sm text-muted-foreground font-rajdhani">Projects Completed</div>
                   </div>
                 </div>
               </div>
             </div>
-
-            <div className="text-muted-foreground leading-relaxed font-rajdhani text-lg" data-aos="fade-up" data-aos-delay="700">
-              <p className="mb-4">
-                Passionate about creating immersive digital experiences that push the boundaries 
-                of what's possible on the web. I specialize in building scalable applications 
-                with modern technologies and a focus on user experience.
-              </p>
-              <p>
-                When I'm not coding, you can find me exploring the latest in AI, contributing 
-                to open source projects, or experimenting with new frameworks and tools that 
-                shape the future of development.
-              </p>
-            </div>
           </div>
 
-          {/* Right - Holographic Display */}
-          <div className="relative" data-aos="fade-left" data-aos-delay="400">
-            <div className="cyber-border bg-gradient-to-br from-card/30 to-card/10 backdrop-blur-sm rounded-lg p-8 relative overflow-hidden">
-              {/* Hologram effect overlay */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 via-transparent to-secondary/10" />
-              
-              {/* Scanning lines effect */}
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent animate-pulse" />
-              
-              <div className="relative z-10 text-center">
-                <div className="w-48 h-48 mx-auto mb-6 relative">
-                  <img
-                    src="/placeholder.svg"
-                    alt="Holographic profile"
-                    className="w-full h-full object-cover rounded-lg opacity-80"
-                  />
-                  
-                  {/* Hologram grid overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/20 to-transparent" 
-                       style={{
-                         backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255, 0, 124, 0.1) 2px, rgba(255, 0, 124, 0.1) 4px)'
-                       }} />
-                </div>
-                
-                <h4 className="font-orbitron text-xl font-bold text-primary text-glow mb-2">
-                  ALEX_CHEN.EXE
-                </h4>
-                <p className="text-muted-foreground font-mono text-sm">
-                  Version 2024.1.0
-                </p>
-                <p className="text-secondary text-glow font-mono text-xs mt-2">
-                  {'> Ready for deployment'}
-                </p>
+          {/* Skills Overview */}
+          <div className="grid md:grid-cols-3 gap-6" data-aos="fade-up" data-aos-delay="400">
+            <div className="cyber-border bg-card/20 backdrop-blur-sm rounded-lg p-6 text-center">
+              <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4 neon-glow">
+                <span className="text-2xl">🚀</span>
               </div>
+              <h4 className="font-orbitron font-bold text-foreground mb-2">Frontend</h4>
+              <p className="text-muted-foreground text-sm font-rajdhani">React, Vue, Next.js, TypeScript</p>
+            </div>
 
-              {/* Corner brackets */}
-              <div className="absolute top-4 left-4 w-6 h-6 border-l-2 border-t-2 border-primary" />
-              <div className="absolute top-4 right-4 w-6 h-6 border-r-2 border-t-2 border-primary" />
-              <div className="absolute bottom-4 left-4 w-6 h-6 border-l-2 border-b-2 border-primary" />
-              <div className="absolute bottom-4 right-4 w-6 h-6 border-r-2 border-b-2 border-primary" />
+            <div className="cyber-border bg-card/20 backdrop-blur-sm rounded-lg p-6 text-center">
+              <div className="w-16 h-16 bg-secondary/20 rounded-full flex items-center justify-center mx-auto mb-4 neon-glow-blue">
+                <span className="text-2xl">⚡</span>
+              </div>
+              <h4 className="font-orbitron font-bold text-foreground mb-2">Backend</h4>
+              <p className="text-muted-foreground text-sm font-rajdhani">Node.js, Python, PostgreSQL, MongoDB</p>
+            </div>
+
+            <div className="cyber-border bg-card/20 backdrop-blur-sm rounded-lg p-6 text-center">
+              <div className="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl">☁️</span>
+              </div>
+              <h4 className="font-orbitron font-bold text-foreground mb-2">Cloud</h4>
+              <p className="text-muted-foreground text-sm font-rajdhani">AWS, Docker, Kubernetes, CI/CD</p>
             </div>
           </div>
         </div>

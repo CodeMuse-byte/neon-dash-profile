@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { Send, MapPin, Mail, Github } from 'lucide-react';
+import { Send, MapPin, Mail, Github, Linkedin } from 'lucide-react';
 import GlowButton from './GlowButton';
 
 const ContactSection = () => {
@@ -178,6 +178,16 @@ const ContactSection = () => {
                   <div>
                     <h4 className="font-rajdhani font-semibold text-foreground">Email</h4>
                     <p className="text-muted-foreground">alex.chen@futurecode.dev</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center space-x-4" data-aos="fade-up" data-aos-delay="650">
+                  <div className="w-12 h-12 bg-blue-600/20 rounded-lg flex items-center justify-center">
+                    <Linkedin className="text-blue-600" size={20} />
+                  </div>
+                  <div>
+                    <h4 className="font-rajdhani font-semibold text-foreground">LinkedIn</h4>
+                    <p className="text-muted-foreground">@alexchen-dev</p>
                   </div>
                 </div>
 

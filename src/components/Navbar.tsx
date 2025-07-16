@@ -11,6 +11,7 @@ const Navbar = () => {
     { id: 'about', label: 'About', icon: User },
     { id: 'skills', label: 'Skills', icon: Code },
     { id: 'projects', label: 'Projects', icon: Briefcase },
+    { id: 'testimonials', label: 'Testimonials', icon: Briefcase },
     { id: 'contact', label: 'Contact', icon: Mail },
   ];
 
@@ -45,7 +46,7 @@ const Navbar = () => {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border cyber-border">
-      <div className="container mx-auto px-6 py-4 flex items-center justify-between">
+      <div className="container mx-auto flex items-center justify-between">
         {/* Left - Navigation Links */}
         <div className="flex items-center space-x-8">
           {navItems.map((item) => {
