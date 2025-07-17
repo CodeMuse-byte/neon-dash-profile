@@ -100,16 +100,16 @@ const CoverPage = () => {
             </div>
           </div>
 
-          {/* Photo Container */}
+          {/* Photo Container with Rotation Animation */}
           <div className="animate-on-load opacity-0 scale-95 transition-all duration-700 ease-out lg:justify-self-end">
             <div className="relative flex items-center justify-center">
               <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 via-secondary/10 to-accent/20 rounded-full blur-2xl scale-110 animate-pulse"></div>
               
-              {/* Main Profile Image Container with 3D Animation */}
+              {/* Main Profile Image Container with 3D Animation and Rotation */}
               <div className="relative w-full max-w-sm aspect-square mx-auto lg:mx-0">
-                <div className="relative w-full h-full border border-border rounded-full overflow-hidden bg-gradient-to-tr from-muted to-card transform transition-all duration-1000 hover:scale-110 hover:rotate-12 animate-float" 
+                <div className="relative w-full h-full border border-border rounded-full overflow-hidden bg-gradient-to-tr from-muted to-card transform transition-all duration-1000 hover:scale-110 hover:rotate-12 animate-spin-slow" 
                      style={{
-                       animation: 'float 6s ease-in-out infinite, rotate3d 10s linear infinite'
+                       animation: 'float 6s ease-in-out infinite, spin 20s linear infinite'
                      }}>
                   <img
                     src="/lovable-uploads/77bc05c6-2eec-4cd4-be5b-029327875129.png"

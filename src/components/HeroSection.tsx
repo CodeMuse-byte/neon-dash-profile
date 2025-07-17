@@ -63,18 +63,27 @@ const HeroSection = () => {
             </div>
           </div>
 
-          {/* Photo Section */}
+          {/* Photo Section with Split Reveal Animation */}
           <div className="flex justify-center lg:justify-end" data-aos="fade-left" data-aos-delay="600">
             <div className="relative">
-              {/* Main Photo */}
+              {/* Main Photo with Split Reveal */}
               <div className="relative w-80 h-80 lg:w-96 lg:h-96">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-full blur-xl"></div>
-                <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-primary/30 backdrop-blur-sm">
-                  <img
-                    src="/lovable-uploads/77bc05c6-2eec-4cd4-be5b-029327875129.png"
-                    alt="Chris Evans - Software Engineer"
-                    className="w-full h-full object-cover"
-                  />
+                <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-primary/30 backdrop-blur-sm split-reveal">
+                  <div className="split-reveal-left">
+                    <img
+                      src="/lovable-uploads/77bc05c6-2eec-4cd4-be5b-029327875129.png"
+                      alt="Chris Evans - Software Engineer"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="split-reveal-right">
+                    <img
+                      src="/lovable-uploads/77bc05c6-2eec-4cd4-be5b-029327875129.png"
+                      alt="Chris Evans - Software Engineer"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
                 </div>
                 
                 {/* Floating Elements */}

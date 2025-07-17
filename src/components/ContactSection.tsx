@@ -1,5 +1,5 @@
 
-import { Home, MapPin, Badge, Mail, Phone, MessageSquare, Send } from 'lucide-react';
+import { Home, MapPin, Badge, Mail, MessageSquare, Send, Paperclip } from 'lucide-react';
 import { useState } from 'react';
 import GlowButton from './GlowButton';
 
@@ -7,7 +7,8 @@ const ContactSection = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    message: ''
+    message: '',
+    attachment: null as File | null
   });
 
   const scrollToHome = () => {
@@ -18,6 +19,14 @@ const ContactSection = () => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
+    });
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0] || null;
+    setFormData({
+      ...formData,
+      attachment: file
     });
   };
 
@@ -37,7 +46,7 @@ const ContactSection = () => {
             <div className="w-24 h-1 bg-primary mx-auto rounded-full mt-6" data-aos="fade-up" data-aos-delay="200" />
           </div>
 
-          <div className="grid lg:grid-cols-3 gap-12 mb-16">
+          <div className="grid lg:grid-cols-3 gap-12">
             {/* Contact Cards */}
             <div className="lg:col-span-1 space-y-6" data-aos="fade-right" data-aos-delay="300">
               {/* Status Card */}
@@ -70,25 +79,13 @@ const ContactSection = () => {
                 </div>
               </div>
 
-              {/* Contact Methods */}
-              <div className="space-y-4">
-                <div className="bg-card/50 backdrop-blur-sm border border-border rounded-2xl p-4 hover:border-primary/30 transition-colors cursor-pointer">
-                  <div className="flex items-center gap-3">
-                    <Mail className="w-5 h-5 text-primary" />
-                    <div>
-                      <p className="font-rajdhani font-semibold text-foreground">Email</p>
-                      <p className="text-sm text-muted-foreground">hello@example.com</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-card/50 backdrop-blur-sm border border-border rounded-2xl p-4 hover:border-primary/30 transition-colors cursor-pointer">
-                  <div className="flex items-center gap-3">
-                    <Phone className="w-5 h-5 text-primary" />
-                    <div>
-                      <p className="font-rajdhani font-semibold text-foreground">Phone</p>
-                      <p className="text-sm text-muted-foreground">+91 123 456 7890</p>
-                    </div>
+              {/* Email Contact */}
+              <div className="bg-card/50 backdrop-blur-sm border border-border rounded-2xl p-4 hover:border-primary/30 transition-colors cursor-pointer">
+                <div className="flex items-center gap-3">
+                  <Mail className="w-5 h-5 text-primary" />
+                  <div>
+                    <p className="font-rajdhani font-semibold text-foreground">Email</p>
+                    <p className="text-sm text-muted-foreground">hello@example.com</p>
                   </div>
                 </div>
               </div>
@@ -162,6 +159,31 @@ const ContactSection = () => {
                     />
                   </div>
 
+                  {/* File Attachment */}
+                  <div>
+                    <label htmlFor="attachment" className="block text-sm font-orbitron font-semibold text-foreground mb-2">
+                      Attachment (Optional)
+                    </label>
+                    <div className="relative">
+                      <input
+                        type="file"
+                        id="attachment"
+                        onChange={handleFileChange}
+                        className="hidden"
+                        accept=".pdf,.doc,.docx,.txt,.jpg,.png"
+                      />
+                      <label
+                        htmlFor="attachment"
+                        className="w-full px-4 py-3 bg-background/50 backdrop-blur-sm border border-border rounded-xl text-muted-foreground hover:border-primary focus:border-primary cursor-pointer transition-colors flex items-center gap-3"
+                      >
+                        <Paperclip className="w-5 h-5" />
+                        <span className="flex-1">
+                          {formData.attachment ? formData.attachment.name : 'Click to attach a file'}
+                        </span>
+                      </label>
+                    </div>
+                  </div>
+
                   <GlowButton
                     variant="primary"
                     icon={Send}
@@ -172,25 +194,6 @@ const ContactSection = () => {
                 </div>
               </div>
             </div>
-          </div>
-
-          {/* Quick Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6" data-aos="fade-up" data-aos-delay="500">
-            {[
-              { number: '24h', label: 'Response Time' },
-              { number: '100%', label: 'Client Satisfaction' },
-              { number: '5+', label: 'Years Experience' },
-              { number: '110+', label: 'Projects Completed' }
-            ].map((stat, index) => (
-              <div key={stat.label} className="text-center bg-card/30 backdrop-blur-sm border border-border rounded-xl p-4">
-                <div className="text-2xl font-orbitron font-black text-primary mb-1">
-                  {stat.number}
-                </div>
-                <div className="text-sm text-muted-foreground font-rajdhani">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </div>

@@ -1,66 +1,47 @@
-
-import { Code, Database, Globe, Smartphone, Server, Palette } from 'lucide-react';
+import { Code, Database, Globe, Smartphone, Server, Palette, Cloud, Shield, Zap } from 'lucide-react';
 
 interface Skill {
   name: string;
   icon: typeof Code;
   level: number;
-  description: string;
+  category: 'frontend' | 'backend' | 'tools' | 'other';
   x: number;
   y: number;
 }
 
 const SkillsSection = () => {
   const skills: Skill[] = [
-    {
-      name: 'Frontend Development',
-      icon: Code,
-      level: 95,
-      description: 'React, Vue.js, TypeScript, Tailwind CSS',
-      x: 20,
-      y: 30
-    },
-    {
-      name: 'Backend Development',
-      icon: Server,
-      level: 90,
-      description: 'Node.js, Python, PostgreSQL, MongoDB',
-      x: 70,
-      y: 20
-    },
-    {
-      name: 'Mobile Development',
-      icon: Smartphone,
-      level: 85,
-      description: 'React Native, Flutter, iOS, Android',
-      x: 15,
-      y: 70
-    },
-    {
-      name: 'Database Design',
-      icon: Database,
-      level: 88,
-      description: 'SQL, NoSQL, Redis, Elasticsearch',
-      x: 75,
-      y: 65
-    },
-    {
-      name: 'Web Technologies',
-      icon: Globe,
-      level: 92,
-      description: 'REST APIs, GraphQL, WebSockets, PWAs',
-      x: 50,
-      y: 50
-    },
-    {
-      name: 'UI/UX Design',
-      icon: Palette,
-      level: 80,
-      description: 'Figma, Adobe XD, Prototyping, User Research',
-      x: 40,
-      y: 80
-    }
+    // Frontend (Pink/Red)
+    { name: 'React', icon: Code, level: 95, category: 'frontend', x: 20, y: 15 },
+    { name: 'Next.js', icon: Globe, level: 90, category: 'frontend', x: 50, y: 20 },
+    { name: 'Tailwind', icon: Palette, level: 92, category: 'frontend', x: 15, y: 45 },
+    { name: 'TypeScript', icon: Code, level: 88, category: 'frontend', x: 35, y: 55 },
+    
+    // Backend (Blue/Cyan)
+    { name: 'Node.js', icon: Server, level: 85, category: 'backend', x: 70, y: 25 },
+    { name: 'MongoDB', icon: Database, level: 78, category: 'backend', x: 80, y: 15 },
+    { name: 'Express', icon: Server, level: 82, category: 'backend', x: 75, y: 50 },
+    { name: 'Python', icon: Code, level: 80, category: 'backend', x: 85, y: 35 },
+    
+    // Tools (Purple/Gray)
+    { name: 'Docker', icon: Cloud, level: 75, category: 'tools', x: 45, y: 75 },
+    { name: 'AWS', icon: Shield, level: 85, category: 'tools', x: 25, y: 80 },
+    { name: 'Kubernetes', icon: Server, level: 70, category: 'tools', x: 65, y: 80 },
+    
+    // Other (Green)
+    { name: 'Three.js', icon: Zap, level: 72, category: 'other', x: 10, y: 25 },
+    { name: 'AI/ML', icon: Smartphone, level: 75, category: 'other', x: 90, y: 65 }
   ];
+
+  const getCategoryColor = (category: string) => {
+    switch (category) {
+      case 'frontend': return { border: 'border-pink-500', bg: 'bg-pink-500/10', text: 'text-pink-500', progress: 'from-pink-500 to-red-500' };
+      case 'backend': return { border: 'border-cyan-500', bg: 'bg-cyan-500/10', text: 'text-cyan-500', progress: 'from-cyan-500 to-blue-500' };
+      case 'tools': return { border: 'border-purple-500', bg: 'bg-purple-500/10', text: 'text-purple-500', progress: 'from-purple-500 to-gray-500' };
+      case 'other': return { border: 'border-green-500', bg: 'bg-green-500/10', text: 'text-green-500', progress: 'from-green-500 to-emerald-500' };
+      default: return { border: 'border-primary', bg: 'bg-primary/10', text: 'text-primary', progress: 'from-primary to-secondary' };
+    }
+  };
 
   return (
     <section id="skills" className="py-24 relative ml-72">
@@ -78,13 +59,13 @@ const SkillsSection = () => {
         </div>
 
         {/* Skills Map */}
-        <div className="relative max-w-6xl mx-auto" data-aos="fade-up" data-aos-delay="300">
+        <div className="relative max-w-6xl mx-auto mb-12" data-aos="fade-up" data-aos-delay="300">
           <div className="relative h-96 lg:h-[500px] bg-card/30 backdrop-blur-sm border border-border rounded-2xl overflow-hidden">
             {/* Grid Background */}
-            <div className="absolute inset-0 opacity-20">
-              <div className="grid grid-cols-8 grid-rows-6 h-full">
-                {Array.from({ length: 48 }).map((_, i) => (
-                  <div key={i} className="border border-primary/10" />
+            <div className="absolute inset-0 opacity-10">
+              <div className="grid grid-cols-12 grid-rows-8 h-full">
+                {Array.from({ length: 96 }).map((_, i) => (
+                  <div key={i} className="border border-muted/20" />
                 ))}
               </div>
             </div>
@@ -93,8 +74,8 @@ const SkillsSection = () => {
             <svg className="absolute inset-0 w-full h-full">
               <defs>
                 <linearGradient id="connectionGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity="0.3" />
-                  <stop offset="100%" stopColor="hsl(var(--secondary))" stopOpacity="0.3" />
+                  <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity="0.2" />
+                  <stop offset="100%" stopColor="hsl(var(--secondary))" stopOpacity="0.2" />
                 </linearGradient>
               </defs>
               {skills.map((skill, index) => 
@@ -116,6 +97,7 @@ const SkillsSection = () => {
             {/* Skill Nodes */}
             {skills.map((skill, index) => {
               const Icon = skill.icon;
+              const colors = getCategoryColor(skill.category);
               return (
                 <div
                   key={skill.name}
@@ -126,37 +108,37 @@ const SkillsSection = () => {
                 >
                   {/* Skill Node */}
                   <div className="relative">
-                    <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-secondary/20 backdrop-blur-sm border-2 border-primary/30 rounded-full flex items-center justify-center group-hover:scale-110 transition-all duration-300 group-hover:border-primary">
-                      <Icon className="w-8 h-8 text-primary" />
+                    <div className={`w-16 h-16 ${colors.bg} backdrop-blur-sm border-2 ${colors.border} rounded-xl flex items-center justify-center group-hover:scale-110 transition-all duration-300 group-hover:shadow-lg`}>
+                      <Icon className={`w-8 h-8 ${colors.text}`} />
                     </div>
                     
                     {/* Pulsing Ring */}
-                    <div className="absolute inset-0 w-16 h-16 border-2 border-primary/20 rounded-full animate-ping" />
+                    <div className={`absolute inset-0 w-16 h-16 border-2 ${colors.border} opacity-50 rounded-xl animate-ping`} />
                   </div>
 
-                  {/* Tooltip */}
-                  <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                    <div className="bg-card/90 backdrop-blur-sm border border-border rounded-lg p-4 shadow-xl min-w-64">
-                      <h3 className="font-orbitron text-sm font-bold text-foreground mb-2">
+                  {/* Enhanced Tooltip */}
+                  <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-4 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none z-50">
+                    <div className="bg-background/95 backdrop-blur-md border border-border rounded-xl p-4 shadow-2xl min-w-64">
+                      <h3 className="font-orbitron text-lg font-bold text-foreground mb-2">
                         {skill.name}
                       </h3>
-                      <p className="text-xs text-muted-foreground font-rajdhani mb-3">
-                        {skill.description}
-                      </p>
-                      <div className="space-y-1">
+                      <div className="space-y-3">
                         <div className="flex justify-between items-center">
-                          <span className="text-xs font-orbitron font-semibold text-foreground">
+                          <span className="text-sm font-orbitron font-semibold text-muted-foreground">
                             Proficiency
                           </span>
-                          <span className="text-xs font-bold text-primary">
+                          <span className={`text-sm font-bold ${colors.text}`}>
                             {skill.level}%
                           </span>
                         </div>
-                        <div className="w-full bg-muted/30 rounded-full h-1">
+                        <div className="w-full bg-muted/30 rounded-full h-2">
                           <div
-                            className="h-full bg-gradient-to-r from-primary to-secondary rounded-full"
+                            className={`h-full bg-gradient-to-r ${colors.progress} rounded-full transition-all duration-1000`}
                             style={{ width: `${skill.level}%` }}
                           />
+                        </div>
+                        <div className={`text-xs ${colors.text} font-medium capitalize`}>
+                          {skill.category}
                         </div>
                       </div>
                     </div>
@@ -165,6 +147,21 @@ const SkillsSection = () => {
               );
             })}
           </div>
+        </div>
+
+        {/* Category Legend */}
+        <div className="flex flex-wrap justify-center gap-6" data-aos="fade-up" data-aos-delay="500">
+          {[
+            { category: 'frontend', label: 'Frontend', color: 'text-pink-500' },
+            { category: 'backend', label: 'Backend', color: 'text-cyan-500' },
+            { category: 'tools', label: 'Tools', color: 'text-purple-500' },
+            { category: 'other', label: 'Other', color: 'text-green-500' }
+          ].map((item, index) => (
+            <div key={item.category} className="flex items-center gap-2" data-aos="zoom-in" data-aos-delay={600 + index * 100}>
+              <div className={`w-3 h-3 rounded-full bg-current ${item.color}`} />
+              <span className="font-rajdhani text-sm text-muted-foreground">{item.label}</span>
+            </div>
+          ))}
         </div>
       </div>
     </section>

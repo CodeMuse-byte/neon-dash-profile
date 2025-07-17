@@ -50,7 +50,7 @@ const ProfileSidebar = () => {
       {/* Profile Header */}
       <div className="p-8 text-center border-b border-border">
         <div 
-          className="w-24 h-24 rounded-full bg-gradient-to-br from-green-400 to-green-600 mx-auto mb-6 flex items-center justify-center overflow-hidden cursor-pointer hover:scale-105 transition-transform duration-200"
+          className="w-24 h-24 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 mx-auto mb-6 flex items-center justify-center overflow-hidden cursor-pointer hover:scale-105 transition-transform duration-200"
           onClick={handlePhotoClick}
         >
           <img
@@ -88,7 +88,7 @@ const ProfileSidebar = () => {
                 onClick={() => scrollToSection(item.label)}
                 className={`w-full flex items-center px-4 py-4 rounded-xl text-left transition-all duration-200 ${
                   isActive 
-                    ? 'bg-green-500 text-white shadow-lg shadow-green-500/25' 
+                    ? 'bg-blue-500 text-white shadow-lg shadow-blue-500/25' 
                     : 'hover:bg-accent text-foreground hover:scale-[1.02]'
                 }`}
               >
@@ -110,7 +110,7 @@ const ProfileSidebar = () => {
 
         {/* Hire Me Button */}
         <div className="mt-8">
-          <button className="w-full bg-green-500 hover:bg-green-600 text-white py-4 px-6 rounded-xl font-medium transition-all duration-200 flex items-center justify-center hover:scale-[1.02] shadow-lg shadow-green-500/25">
+          <button className="w-full bg-blue-500 hover:bg-blue-600 text-white py-4 px-6 rounded-xl font-medium transition-all duration-200 flex items-center justify-center hover:scale-[1.02] shadow-lg shadow-blue-500/25">
             <ExternalLink className="w-4 h-4 mr-2" />
             Hire Me
           </button>

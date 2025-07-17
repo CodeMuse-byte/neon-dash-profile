@@ -74,6 +74,15 @@
   }
 }
 
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .animate-float {
   animation: float 4s ease-in-out infinite;
 }
@@ -82,6 +91,66 @@
   animation: scroll 30s linear infinite;
 }
 
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
 .pause-scroll:hover {
   animation-play-state: paused;
+}
+
+/* Photo Split Reveal Animation */
+.split-reveal {
+  position: relative;
+  overflow: hidden;
+}
+
+.split-reveal-left,
+.split-reveal-right {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  transition: transform 0.8s ease-in-out;
+}
+
+.split-reveal-left {
+  left: 0;
+  transform: translateX(-100%);
+  animation: slideInLeft 1.5s ease-out 0.5s forwards;
+}
+
+.split-reveal-right {
+  right: 0;
+  transform: translateX(100%);
+  animation: slideInRight 1.5s ease-out 0.7s forwards;
+}
+
+@keyframes slideInLeft {
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  to {
+    transform: translateX(0);
+  }
+}
+
+.split-reveal-left img,
+.split-reveal-right img {
+  width: 200%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.split-reveal-left img {
+  object-position: left center;
+}
+
+.split-reveal-right img {
+  object-position: right center;
+  transform: translateX(-50%);
 }
