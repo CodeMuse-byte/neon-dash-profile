@@ -48,9 +48,9 @@ const ProfileSidebar = () => {
   return (
     <div className="fixed left-6 top-6 bottom-6 w-72 bg-card border border-border rounded-2xl shadow-lg z-50 overflow-hidden">
       {/* Profile Header */}
-      <div className="p-6 text-center border-b border-border">
+      <div className="p-8 text-center border-b border-border">
         <div 
-          className="w-20 h-20 rounded-full bg-gradient-to-br from-green-400 to-green-600 mx-auto mb-4 flex items-center justify-center overflow-hidden cursor-pointer hover:scale-105 transition-transform duration-200"
+          className="w-24 h-24 rounded-full bg-gradient-to-br from-green-400 to-green-600 mx-auto mb-6 flex items-center justify-center overflow-hidden cursor-pointer hover:scale-105 transition-transform duration-200"
           onClick={handlePhotoClick}
         >
           <img
@@ -59,15 +59,15 @@ const ProfileSidebar = () => {
             className="w-full h-full object-cover"
           />
         </div>
-        <h2 className="text-xl font-semibold text-foreground mb-1">Chris Evans</h2>
-        <p className="text-sm text-muted-foreground">Senior Software Engineer</p>
+        <h2 className="text-xl font-semibold text-foreground mb-2">Chris Evans</h2>
+        <p className="text-sm text-muted-foreground mb-6">Senior Software Engineer</p>
         
         {/* Social Icons */}
-        <div className="flex justify-center space-x-3 mt-4">
+        <div className="flex justify-center space-x-3">
           {socialIcons.map((social, index) => (
             <button
               key={index}
-              className="w-8 h-8 rounded-lg bg-muted hover:bg-accent flex items-center justify-center transition-colors"
+              className="w-10 h-10 rounded-lg bg-muted hover:bg-accent flex items-center justify-center transition-colors"
             >
               <span className={`text-sm ${social.color}`}>{social.icon}</span>
             </button>
@@ -76,8 +76,8 @@ const ProfileSidebar = () => {
       </div>
 
       {/* Navigation Menu */}
-      <div className="p-4">
-        <nav className="space-y-1">
+      <div className="p-6">
+        <nav className="space-y-2">
           {menuItems.map((item, index) => {
             const Icon = item.icon;
             const isActive = activeItem === item.label;
@@ -86,16 +86,16 @@ const ProfileSidebar = () => {
               <button
                 key={item.label}
                 onClick={() => scrollToSection(item.label)}
-                className={`w-full flex items-center px-4 py-3 rounded-lg text-left transition-colors ${
+                className={`w-full flex items-center px-4 py-4 rounded-xl text-left transition-all duration-200 ${
                   isActive 
-                    ? 'bg-green-500 text-white' 
-                    : 'hover:bg-accent text-foreground'
+                    ? 'bg-green-500 text-white shadow-lg shadow-green-500/25' 
+                    : 'hover:bg-accent text-foreground hover:scale-[1.02]'
                 }`}
               >
-                <Icon className="w-5 h-5 mr-3" />
-                <span className="flex-1">{item.label}</span>
+                <Icon className="w-5 h-5 mr-4" />
+                <span className="flex-1 font-medium">{item.label}</span>
                 {item.badge && (
-                  <span className={`px-2 py-1 text-xs rounded-full ${
+                  <span className={`px-3 py-1 text-xs rounded-full font-semibold ${
                     isActive 
                       ? 'bg-white/20 text-white' 
                       : 'bg-muted text-muted-foreground'
@@ -109,8 +109,8 @@ const ProfileSidebar = () => {
         </nav>
 
         {/* Hire Me Button */}
-        <div className="mt-6">
-          <button className="w-full bg-green-500 hover:bg-green-600 text-white py-3 px-4 rounded-lg font-medium transition-colors flex items-center justify-center">
+        <div className="mt-8">
+          <button className="w-full bg-green-500 hover:bg-green-600 text-white py-4 px-6 rounded-xl font-medium transition-all duration-200 flex items-center justify-center hover:scale-[1.02] shadow-lg shadow-green-500/25">
             <ExternalLink className="w-4 h-4 mr-2" />
             Hire Me
           </button>

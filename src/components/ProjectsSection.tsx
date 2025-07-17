@@ -69,86 +69,92 @@ const ProjectsSection = () => {
           <div className="w-24 h-1 bg-primary mx-auto rounded-full mt-6" data-aos="fade-up" data-aos-delay="200" />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
-          {projects.map((project, index) => (
-            <div
-              key={project.id}
-              className="group bg-card/50 backdrop-blur-sm border border-border rounded-2xl p-8 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500 hover:scale-[1.02] hover:border-primary/30"
-              data-aos="fade-up"
-              data-aos-delay={300 + index * 100}
-            >
-              {/* Project Image */}
-              <div className="relative mb-6 overflow-hidden rounded-xl">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
-                />
-                {project.featured && (
-                  <div className="absolute top-4 left-4 bg-primary/90 backdrop-blur-sm px-3 py-1 rounded-full">
-                    <span className="text-xs font-orbitron font-bold text-primary-foreground">
-                      FEATURED
-                    </span>
+        <div className="space-y-16 max-w-7xl mx-auto">
+          {projects.map((project, index) => {
+            const isEven = index % 2 === 0;
+            return (
+              <div
+                key={project.id}
+                className={`flex flex-col lg:flex-row items-center gap-12 ${
+                  isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'
+                }`}
+                data-aos="fade-up"
+                data-aos-delay={300 + index * 100}
+              >
+                {/* Project Image */}
+                <div className="flex-1 relative group">
+                  <div className="relative overflow-hidden rounded-2xl">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
+                    {project.featured && (
+                      <div className="absolute top-6 left-6 bg-primary/90 backdrop-blur-sm px-4 py-2 rounded-full">
+                        <span className="text-sm font-orbitron font-bold text-primary-foreground">
+                          FEATURED
+                        </span>
+                      </div>
+                    )}
                   </div>
-                )}
-              </div>
-
-              {/* Project Info */}
-              <div className="space-y-6">
-                <div>
-                  <h3 className="font-orbitron text-xl font-bold text-foreground mb-3">
-                    {project.title}
-                  </h3>
-                  
-                  <p className="text-muted-foreground font-rajdhani leading-relaxed">
-                    {project.description}
-                  </p>
                 </div>
 
-                {/* Tech Stack */}
-                <div>
-                  <h4 className="font-orbitron text-xs font-bold text-primary mb-3">
-                    TECH STACK
-                  </h4>
-                  <div className="flex flex-wrap gap-2">
-                    {project.tech.map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-3 py-1 bg-muted/30 border border-border rounded-lg text-sm font-rajdhani text-foreground hover:border-primary/50 transition-colors"
+                {/* Project Info */}
+                <div className="flex-1 space-y-6">
+                  <div>
+                    <h3 className="font-orbitron text-2xl lg:text-3xl font-bold text-foreground mb-4">
+                      {project.title}
+                    </h3>
+                    
+                    <p className="text-muted-foreground font-rajdhani text-lg leading-relaxed">
+                      {project.description}
+                    </p>
+                  </div>
+
+                  {/* Tech Stack */}
+                  <div>
+                    <h4 className="font-orbitron text-sm font-bold text-primary mb-4">
+                      TECH STACK
+                    </h4>
+                    <div className="flex flex-wrap gap-3">
+                      {project.tech.map((tech) => (
+                        <span
+                          key={tech}
+                          className="px-4 py-2 bg-card/50 backdrop-blur-sm border border-border rounded-xl text-sm font-rajdhani text-foreground hover:border-primary/50 transition-colors"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="flex gap-4 pt-4">
+                    {project.github && (
+                      <GlowButton
+                        variant="secondary"
+                        icon={Github}
+                        href={project.github}
                       >
-                        {tech}
-                      </span>
-                    ))}
+                        Source Code
+                      </GlowButton>
+                    )}
+                    
+                    {project.live && (
+                      <GlowButton
+                        variant="primary"
+                        icon={ExternalLink}
+                        href={project.live}
+                      >
+                        Live Demo
+                      </GlowButton>
+                    )}
                   </div>
                 </div>
-
-                {/* Action Buttons */}
-                <div className="flex gap-3 pt-2">
-                  {project.github && (
-                    <GlowButton
-                      variant="secondary"
-                      icon={Github}
-                      href={project.github}
-                      className="flex-1 justify-center"
-                    >
-                      Source Code
-                    </GlowButton>
-                  )}
-                  
-                  {project.live && (
-                    <GlowButton
-                      variant="primary"
-                      icon={ExternalLink}
-                      href={project.live}
-                      className="flex-1 justify-center"
-                    >
-                      Live Demo
-                    </GlowButton>
-                  )}
-                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Call to action */}

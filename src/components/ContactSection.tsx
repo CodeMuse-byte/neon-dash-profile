@@ -1,16 +1,30 @@
 
-import { Home, MapPin, Badge } from 'lucide-react';
+import { Home, MapPin, Badge, Mail, Phone, MessageSquare, Send } from 'lucide-react';
+import { useState } from 'react';
 import GlowButton from './GlowButton';
 
 const ContactSection = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+
   const scrollToHome = () => {
     document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
   };
 
   return (
     <section id="contact" className="py-24 relative ml-72">
       <div className="container mx-auto px-8 relative z-10">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <div className="text-center mb-20">
             <h2 className="font-orbitron text-4xl lg:text-5xl font-bold mb-4" data-aos="fade-up">
               <span className="text-foreground">
@@ -23,27 +37,58 @@ const ContactSection = () => {
             <div className="w-24 h-1 bg-primary mx-auto rounded-full mt-6" data-aos="fade-up" data-aos-delay="200" />
           </div>
 
-          <div className="grid md:grid-cols-2 gap-12 mb-16">
-            {/* Contact Info */}
-            <div className="space-y-8" data-aos="fade-right" data-aos-delay="300">
-              <div>
-                <h3 className="font-orbitron text-xl font-bold text-foreground mb-6">Get In Touch</h3>
-                
-                {/* Status */}
-                <div className="flex items-center gap-3 mb-4 p-4 bg-card/50 backdrop-blur-sm border border-border rounded-xl">
-                  <Badge className="w-5 h-5 text-green-500" />
+          <div className="grid lg:grid-cols-3 gap-12 mb-16">
+            {/* Contact Cards */}
+            <div className="lg:col-span-1 space-y-6" data-aos="fade-right" data-aos-delay="300">
+              {/* Status Card */}
+              <div className="bg-gradient-to-br from-green-500/10 to-green-600/5 backdrop-blur-sm border border-green-500/20 rounded-2xl p-6">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center">
+                    <Badge className="w-6 h-6 text-green-500" />
+                  </div>
                   <div>
-                    <div className="font-rajdhani font-semibold text-foreground">Available for work</div>
-                    <div className="text-sm text-muted-foreground">Open to new opportunities</div>
+                    <h3 className="font-orbitron font-bold text-foreground">Available for Work</h3>
+                    <p className="text-sm text-muted-foreground">Open to new opportunities</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                  <span className="text-sm font-rajdhani text-green-500">Online now</span>
+                </div>
+              </div>
+
+              {/* Location Card */}
+              <div className="bg-card/50 backdrop-blur-sm border border-border rounded-2xl p-6 hover:border-primary/30 transition-colors">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
+                    <MapPin className="w-6 h-6 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-orbitron font-bold text-foreground">Location</h3>
+                    <p className="text-muted-foreground">India • Remote Available</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Contact Methods */}
+              <div className="space-y-4">
+                <div className="bg-card/50 backdrop-blur-sm border border-border rounded-2xl p-4 hover:border-primary/30 transition-colors cursor-pointer">
+                  <div className="flex items-center gap-3">
+                    <Mail className="w-5 h-5 text-primary" />
+                    <div>
+                      <p className="font-rajdhani font-semibold text-foreground">Email</p>
+                      <p className="text-sm text-muted-foreground">hello@example.com</p>
+                    </div>
                   </div>
                 </div>
 
-                {/* Location */}
-                <div className="flex items-center gap-3 p-4 bg-card/50 backdrop-blur-sm border border-border rounded-xl">
-                  <MapPin className="w-5 h-5 text-primary" />
-                  <div>
-                    <div className="font-rajdhani font-semibold text-foreground">India</div>
-                    <div className="text-sm text-muted-foreground">Remote work available</div>
+                <div className="bg-card/50 backdrop-blur-sm border border-border rounded-2xl p-4 hover:border-primary/30 transition-colors cursor-pointer">
+                  <div className="flex items-center gap-3">
+                    <Phone className="w-5 h-5 text-primary" />
+                    <div>
+                      <p className="font-rajdhani font-semibold text-foreground">Phone</p>
+                      <p className="text-sm text-muted-foreground">+91 123 456 7890</p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -51,7 +96,7 @@ const ContactSection = () => {
               {/* Home Button */}
               <div className="pt-4">
                 <GlowButton
-                  variant="primary"
+                  variant="secondary"
                   icon={Home}
                   onClick={scrollToHome}
                   className="w-full justify-center"
@@ -62,50 +107,90 @@ const ContactSection = () => {
             </div>
 
             {/* Contact Form */}
-            <div className="space-y-6" data-aos="fade-left" data-aos-delay="400">
-              <div>
-                <label htmlFor="name" className="block text-sm font-orbitron font-semibold text-foreground mb-2">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  className="w-full px-4 py-3 bg-card/50 backdrop-blur-sm border border-border rounded-xl text-foreground placeholder-muted-foreground focus:border-primary focus:outline-none transition-colors"
-                  placeholder="Your name"
-                />
-              </div>
+            <div className="lg:col-span-2" data-aos="fade-left" data-aos-delay="400">
+              <div className="bg-card/30 backdrop-blur-sm border border-border rounded-2xl p-8">
+                <div className="flex items-center gap-3 mb-8">
+                  <MessageSquare className="w-6 h-6 text-primary" />
+                  <h3 className="font-orbitron text-xl font-bold text-foreground">Send Message</h3>
+                </div>
 
-              <div>
-                <label htmlFor="email" className="block text-sm font-orbitron font-semibold text-foreground mb-2">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  className="w-full px-4 py-3 bg-card/50 backdrop-blur-sm border border-border rounded-xl text-foreground placeholder-muted-foreground focus:border-primary focus:outline-none transition-colors"
-                  placeholder="your.email@example.com"
-                />
-              </div>
+                <div className="space-y-6">
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <label htmlFor="name" className="block text-sm font-orbitron font-semibold text-foreground mb-2">
+                        Full Name
+                      </label>
+                      <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        className="w-full px-4 py-3 bg-background/50 backdrop-blur-sm border border-border rounded-xl text-foreground placeholder-muted-foreground focus:border-primary focus:outline-none transition-colors"
+                        placeholder="Your name"
+                      />
+                    </div>
 
-              <div>
-                <label htmlFor="message" className="block text-sm font-orbitron font-semibold text-foreground mb-2">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  rows={6}
-                  className="w-full px-4 py-3 bg-card/50 backdrop-blur-sm border border-border rounded-xl text-foreground placeholder-muted-foreground focus:border-primary focus:outline-none transition-colors resize-none"
-                  placeholder="Tell me about your project..."
-                />
-              </div>
+                    <div>
+                      <label htmlFor="email" className="block text-sm font-orbitron font-semibold text-foreground mb-2">
+                        Email Address
+                      </label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        className="w-full px-4 py-3 bg-background/50 backdrop-blur-sm border border-border rounded-xl text-foreground placeholder-muted-foreground focus:border-primary focus:outline-none transition-colors"
+                        placeholder="your.email@example.com"
+                      />
+                    </div>
+                  </div>
 
-              <GlowButton
-                variant="primary"
-                className="w-full justify-center"
-              >
-                Send Message
-              </GlowButton>
+                  <div>
+                    <label htmlFor="message" className="block text-sm font-orbitron font-semibold text-foreground mb-2">
+                      Project Details
+                    </label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      rows={6}
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 bg-background/50 backdrop-blur-sm border border-border rounded-xl text-foreground placeholder-muted-foreground focus:border-primary focus:outline-none transition-colors resize-none"
+                      placeholder="Tell me about your project requirements, timeline, and budget..."
+                    />
+                  </div>
+
+                  <GlowButton
+                    variant="primary"
+                    icon={Send}
+                    className="w-full justify-center text-lg py-4"
+                  >
+                    Send Message
+                  </GlowButton>
+                </div>
+              </div>
             </div>
+          </div>
+
+          {/* Quick Stats */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6" data-aos="fade-up" data-aos-delay="500">
+            {[
+              { number: '24h', label: 'Response Time' },
+              { number: '100%', label: 'Client Satisfaction' },
+              { number: '5+', label: 'Years Experience' },
+              { number: '110+', label: 'Projects Completed' }
+            ].map((stat, index) => (
+              <div key={stat.label} className="text-center bg-card/30 backdrop-blur-sm border border-border rounded-xl p-4">
+                <div className="text-2xl font-orbitron font-black text-primary mb-1">
+                  {stat.number}
+                </div>
+                <div className="text-sm text-muted-foreground font-rajdhani">
+                  {stat.label}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

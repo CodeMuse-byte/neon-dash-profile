@@ -1,105 +1,35 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
 @layer base {
   :root {
-    --background: 210 11% 4%;
+    --background: 224 71.4% 4.1%;
     --foreground: 210 20% 98%;
-
-    --card: 215 28% 8%;
+    --card: 224 71.4% 4.1%;
     --card-foreground: 210 20% 98%;
-
-    --popover: 215 28% 8%;
+    --popover: 224 71.4% 4.1%;
     --popover-foreground: 210 20% 98%;
-
-    --primary: 220.9 39.3% 11%;
+    --primary: 263.4 70% 50.4%;
     --primary-foreground: 210 20% 98%;
-
     --secondary: 215 27.9% 16.9%;
     --secondary-foreground: 210 20% 98%;
-
     --muted: 215 27.9% 16.9%;
     --muted-foreground: 217.9 10.6% 64.9%;
-
     --accent: 215 27.9% 16.9%;
     --accent-foreground: 210 20% 98%;
-
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 20% 98%;
-
     --border: 215 27.9% 16.9%;
     --input: 215 27.9% 16.9%;
-    --ring: 216 12.2% 83.9%;
-
-    --radius: 0.5rem;
-  }
-
-  .dark {
-    --background: 210 11% 4%;
-    --foreground: 210 20% 98%;
-
-    --card: 215 28% 8%;
-    --card-foreground: 210 20% 98%;
-
-    --popover: 215 28% 8%;
-    --popover-foreground: 210 20% 98%;
-
-    --primary: 210 20% 98%;
-    --primary-foreground: 220.9 39.3% 11%;
-
-    --secondary: 215 27.9% 16.9%;
-    --secondary-foreground: 210 20% 98%;
-
-    --muted: 215 27.9% 16.9%;
-    --muted-foreground: 217.9 10.6% 64.9%;
-
-    --accent: 215 27.9% 16.9%;
-    --accent-foreground: 210 20% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 20% 98%;
-
-    --border: 215 27.9% 16.9%;
-    --input: 215 27.9% 16.9%;
-    --ring: 216 12.2% 83.9%;
-  }
-
-  /* Theme Color Variables */
-  [data-theme-color="pink"] {
-    --primary: 330 81% 60%;
-    --primary-foreground: 210 20% 98%;
-  }
-
-  [data-theme-color="blue"] {
-    --primary: 217 91% 60%;
-    --primary-foreground: 210 20% 98%;
-  }
-
-  [data-theme-color="purple"] {
-    --primary: 262 83% 58%;
-    --primary-foreground: 210 20% 98%;
-  }
-
-  [data-theme-color="red"] {
-    --primary: 0 84% 60%;
-    --primary-foreground: 210 20% 98%;
-  }
-
-  [data-theme-color="green"] {
-    --primary: 142 71% 45%;
-    --primary-foreground: 210 20% 98%;
-  }
-
-  [data-theme-color="yellow"] {
-    --primary: 48 96% 53%;
-    --primary-foreground: 224 71.4% 4.1%;
+    --ring: 263.4 70% 50.4%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
   }
 }
 
@@ -107,86 +37,51 @@ All colors MUST be HSL.
   * {
     @apply border-border;
   }
-
   body {
-    @apply bg-background text-foreground font-rajdhani;
-    background: #0a0a0a;
+    @apply bg-background text-foreground;
+    font-family: "Rajdhani", sans-serif;
   }
-
   .font-orbitron {
-    font-family: 'Orbitron', monospace;
+    font-family: "Orbitron", monospace;
   }
-
   .font-rajdhani {
-    font-family: 'Rajdhani', sans-serif;
-  }
-
-  .grid-bg {
-    background-image: 
-      linear-gradient(hsl(var(--border)) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(var(--border)) 1px, transparent 1px);
-    background-size: 50px 50px;
-  }
-
-  .cyber-border {
-    position: relative;
-    border: 1px solid hsl(var(--border));
-  }
-
-  .writing-mode-vertical {
-    writing-mode: vertical-lr;
+    font-family: "Rajdhani", sans-serif;
   }
 }
 
 @layer utilities {
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
+  .text-balance {
+    text-wrap: balance;
   }
+}
 
-  .animate-gradient-x {
-    animation: gradient-x 15s ease infinite;
-    background-size: 200% 200%;
+/* Custom animations */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
   }
+  100% {
+    transform: translateX(-50%);
+  }
+}
 
-  .bg-300\% {
-    background-size: 300%;
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
   }
+  50% {
+    transform: translateY(-10px);
+  }
+}
 
-  .typing-animation {
-    animation: typing 3s steps(8, end) infinite;
-    border-right: 2px solid hsl(var(--primary));
-  }
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
 
-  @keyframes typing {
-    0%, 50% { 
-      width: 0; 
-    }
-    100% { 
-      width: 100%; 
-    }
-  }
+.animate-scroll {
+  animation: scroll 30s linear infinite;
+}
 
-  @keyframes float {
-    0%, 100% { 
-      transform: translateY(0px) translateX(0px) rotate(0deg); 
-    }
-    25% { 
-      transform: translateY(-8px) translateX(4px) rotate(1deg); 
-    }
-    50% { 
-      transform: translateY(-12px) translateX(-4px) rotate(-0.5deg); 
-    }
-    75% { 
-      transform: translateY(-6px) translateX(6px) rotate(0.5deg); 
-    }
-  }
-
-  @keyframes gradient-x {
-    0%, 100% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-  }
+.pause-scroll:hover {
+  animation-play-state: paused;
 }
