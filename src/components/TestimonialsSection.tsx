@@ -89,7 +89,7 @@ const TestimonialsSection = () => {
 
         {/* Endless Rotating Reviews */}
         <div className="relative" data-aos="fade-up" data-aos-delay="300">
-          <div className="flex animate-[scroll_30s_linear_infinite] hover:pause-scroll">
+          <div className="flex animate-scroll hover:pause-scroll">
             {allTestimonials.map((testimonial, index) => (
               <div
                 key={`${testimonial.id}-${index}`}
@@ -133,20 +133,6 @@ const TestimonialsSection = () => {
           </div>
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes scroll {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(-50%);
-          }
-        }
-        .pause-scroll:hover {
-          animation-play-state: paused;
-        }
-      `}</style>
     </section>
   );
 };
