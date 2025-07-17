@@ -7,6 +7,8 @@ import SkillsSection from '../components/SkillsSection';
 import ProjectsSection from '../components/ProjectsSection';
 import TestimonialsSection from '../components/TestimonialsSection';
 import ContactSection from '../components/ContactSection';
+import ProfileSidebar from '../components/ProfileSidebar';
+import SettingsPanel from '../components/SettingsPanel';
 
 const Index = () => {
   useEffect(() => {
@@ -20,11 +22,17 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+      <ProfileSidebar />
       <HeroSection />
-      <SkillsSection />
-      <ProjectsSection />
-      <TestimonialsSection />
-      <ContactSection />
+      
+      <div className="ml-72 space-y-24">
+        <SkillsSection />
+        <ProjectsSection />
+        <TestimonialsSection />
+        <ContactSection />
+      </div>
+      
+      <SettingsPanel />
     </div>
   );
 };
