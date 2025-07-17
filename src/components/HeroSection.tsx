@@ -2,9 +2,9 @@
 import { Download, ExternalLink } from 'lucide-react';
 import { useState } from 'react';
 import GlowButton from './GlowButton';
-import ThemeToggle from './ThemeToggle';
 import ProfileSidebar from './ProfileSidebar';
 import GeometricBackground from './GeometricBackground';
+import ThemeControls from './ThemeControls';
 
 const HeroSection = () => {
   const [isAvatarHovered, setIsAvatarHovered] = useState(false);
@@ -30,7 +30,9 @@ const HeroSection = () => {
               
               <div data-aos="fade-up" data-aos-delay="600">
                 <h1 className="font-orbitron text-4xl lg:text-6xl xl:text-7xl font-bold leading-tight">
-                  <span className="text-foreground">Designer</span>
+                  <span className="bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 bg-clip-text text-transparent animate-pulse bg-300% animate-gradient-x">
+                    Designer
+                  </span>
                   <span className="text-muted-foreground">|</span>
                 </h1>
               </div>
@@ -39,15 +41,15 @@ const HeroSection = () => {
                 <p className="text-base lg:text-lg text-muted-foreground font-rajdhani leading-relaxed max-w-2xl mx-auto">
                   I'm a software engineer specializing in scalable web apps.
                   Explore my{' '}
-                  <span className="text-foreground underline cursor-pointer hover:text-primary transition-colors">
+                  <span className="bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent font-semibold cursor-pointer hover:animate-pulse transition-all">
                     blog
                   </span>
                   ,{' '}
-                  <span className="text-foreground underline cursor-pointer hover:text-primary transition-colors">
+                  <span className="bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent font-semibold cursor-pointer hover:animate-pulse transition-all">
                     project portfolio
                   </span>
                   {' '}and{' '}
-                  <span className="text-foreground underline cursor-pointer hover:text-primary transition-colors">
+                  <span className="bg-gradient-to-r from-yellow-400 to-red-500 bg-clip-text text-transparent font-semibold cursor-pointer hover:animate-pulse transition-all">
                     online resume
                   </span>
                   .
@@ -81,7 +83,7 @@ const HeroSection = () => {
                   { number: '6k', label: 'Clients\nWorldwide' }
                 ].map((stat, index) => (
                   <div key={stat.label} className="text-center" data-aos="zoom-in" data-aos-delay={1000 + index * 100}>
-                    <div className="text-2xl lg:text-4xl xl:text-5xl font-orbitron font-bold text-foreground">
+                    <div className="text-2xl lg:text-4xl xl:text-5xl font-orbitron font-bold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-pulse">
                       {stat.number}
                     </div>
                     <div className="text-xs lg:text-sm text-muted-foreground font-rajdhani whitespace-pre-line mt-1 lg:mt-2">
@@ -95,9 +97,9 @@ const HeroSection = () => {
 
           {/* Right Avatar */}
           <div className="col-span-12 lg:col-span-4 xl:col-span-4 flex justify-center lg:justify-end relative" data-aos="fade-left" data-aos-delay="600">
-            {/* Theme Toggle - Top Right */}
+            {/* Theme Controls - Top Right */}
             <div className="absolute top-0 right-0 z-10">
-              <ThemeToggle />
+              <ThemeControls />
             </div>
             
             <div className="relative">

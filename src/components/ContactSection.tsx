@@ -1,6 +1,7 @@
 
 import { useState } from 'react';
-import { Send, MapPin, Mail, Github, Linkedin } from 'lucide-react';
+import { Send, MapPin, Mail, Github, Linkedin, Home } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import GlowButton from './GlowButton';
 
 const ContactSection = () => {
@@ -10,6 +11,7 @@ const ContactSection = () => {
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -34,12 +36,19 @@ const ContactSection = () => {
     <section id="contact" className="py-20 relative">
       <div className="absolute inset-0 bg-gradient-to-b from-background to-card/10" />
       
-      <div className="container mx-auto px-6 relative z-10">
+      {/* Home Button - Bottom Right */}
+      <button
+        onClick={() => navigate('/')}
+        className="fixed bottom-6 right-6 z-50 p-4 bg-primary text-primary-foreground rounded-full shadow-lg hover:scale-110 transition-transform duration-200"
+        aria-label="Go to home"
+      >
+        <Home className="w-6 h-6" />
+      </button>
+      
+      <div className="container mx-auto px-6 relative z-10 ml-80">
         <div className="text-center mb-16">
-          <h2 className="font-orbitron text-4xl lg:text-5xl font-bold text-glow mb-4" data-aos="fade-up">
-            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              Initialize Contact
-            </span>
+          <h2 className="font-orbitron text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent animate-pulse" data-aos="fade-up">
+            Initialize Contact
           </h2>
           <p className="text-muted-foreground font-rajdhani text-lg" data-aos="fade-up" data-aos-delay="100">
             Ready to start a new mission together?
@@ -157,7 +166,7 @@ const ContactSection = () => {
           <div className="space-y-8" data-aos="fade-left" data-aos-delay="300">
             <div className="cyber-border bg-card/20 backdrop-blur-sm rounded-lg p-8" data-aos="fade-up" data-aos-delay="400">
               <h3 className="font-orbitron text-xl font-bold text-primary text-glow mb-6">
-                CONTACT_PROTOCOLS
+                CONTACT_INFO
               </h3>
 
               <div className="space-y-6">
@@ -202,43 +211,16 @@ const ContactSection = () => {
                 </div>
               </div>
             </div>
-
-            {/* System Status */}
-            <div className="cyber-border bg-card/20 backdrop-blur-sm rounded-lg p-6" data-aos="fade-up" data-aos-delay="800">
-              <h4 className="font-orbitron text-lg font-bold text-accent text-glow mb-4">
-                SYSTEM_STATUS
-              </h4>
-              
-              <div className="space-y-3 font-mono text-sm">
-                <div className="flex justify-between items-center">
-                  <span className="text-muted-foreground">Status:</span>
-                  <div className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-                    <span className="text-green-400 text-glow">ONLINE</span>
-                  </div>
-                </div>
-                
-                <div className="flex justify-between items-center">
-                  <span className="text-muted-foreground">Response Time:</span>
-                  <span className="text-secondary text-glow">{'< 24 hours'}</span>
-                </div>
-                
-                <div className="flex justify-between items-center">
-                  <span className="text-muted-foreground">Availability:</span>
-                  <span className="text-primary text-glow">Ready for projects</span>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
 
       {/* Footer */}
       <footer className="mt-20 border-t border-border/50 pt-8">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-6 ml-80">
           <div className="text-center text-muted-foreground font-mono text-sm">
             <p className="mb-2">
-              <span className="text-secondary">{'>'}</span> System initialized by Alex Chen © 2024
+              <span className="text-secondary">{'>'}</span> System initialized by Chris Evans © 2024
             </p>
             <p>
               <span className="text-secondary">{'>'}</span> Built with React • Three.js • Tailwind CSS

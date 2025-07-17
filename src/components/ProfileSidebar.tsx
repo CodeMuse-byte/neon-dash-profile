@@ -1,17 +1,17 @@
 
 import { User, Briefcase, DollarSign, FileText, Package, BookOpen, Mail, ExternalLink } from 'lucide-react';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const ProfileSidebar = () => {
-  const [activeItem, setActiveItem] = useState('About Us');
+  const [activeItem, setActiveItem] = useState('About');
+  const navigate = useNavigate();
 
   const menuItems = [
-    { icon: User, label: 'About Us', isActive: true },
-    { icon: Briefcase, label: 'Portfolio', badge: '16' },
-    { icon: DollarSign, label: 'Services & Pricing' },
-    { icon: FileText, label: 'Resume' },
-    { icon: Package, label: 'Products' },
-    { icon: BookOpen, label: 'Blog' },
+    { icon: User, label: 'About', isActive: true },
+    { icon: Briefcase, label: 'Skills' },
+    { icon: DollarSign, label: 'Projects', badge: '16' },
+    { icon: FileText, label: 'Testimonials' },
     { icon: Mail, label: 'Contact' },
   ];
 
@@ -24,12 +24,10 @@ const ProfileSidebar = () => {
 
   const scrollToSection = (label: string) => {
     const sectionMap: { [key: string]: string } = {
-      'About Us': 'about',
-      'Portfolio': 'projects',
-      'Services & Pricing': 'skills',
-      'Resume': 'about',
-      'Products': 'projects',
-      'Blog': 'testimonials',
+      'About': 'home',
+      'Skills': 'skills',
+      'Projects': 'projects',
+      'Testimonials': 'testimonials',
       'Contact': 'contact',
     };
 
@@ -43,11 +41,18 @@ const ProfileSidebar = () => {
     }
   };
 
+  const handlePhotoClick = () => {
+    navigate('/');
+  };
+
   return (
     <div className="fixed left-6 top-6 bottom-6 w-72 bg-card border border-border rounded-2xl shadow-lg z-50 overflow-hidden">
       {/* Profile Header */}
       <div className="p-6 text-center border-b border-border">
-        <div className="w-20 h-20 rounded-full bg-gradient-to-br from-green-400 to-green-600 mx-auto mb-4 flex items-center justify-center overflow-hidden">
+        <div 
+          className="w-20 h-20 rounded-full bg-gradient-to-br from-green-400 to-green-600 mx-auto mb-4 flex items-center justify-center overflow-hidden cursor-pointer hover:scale-105 transition-transform duration-200"
+          onClick={handlePhotoClick}
+        >
           <img
             src="/lovable-uploads/77bc05c6-2eec-4cd4-be5b-029327875129.png"
             alt="Chris Evans"

@@ -3,7 +3,6 @@ import { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import HeroSection from '../components/HeroSection';
-import AboutSection from '../components/AboutSection';
 import SkillsSection from '../components/SkillsSection';
 import ProjectsSection from '../components/ProjectsSection';
 import TestimonialsSection from '../components/TestimonialsSection';
@@ -22,7 +21,6 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       <HeroSection />
-      <AboutSection />
       <SkillsSection />
       <ProjectsSection />
       <TestimonialsSection />

@@ -70,6 +70,37 @@ All colors MUST be HSL.
     --input: 215 27.9% 16.9%;
     --ring: 216 12.2% 83.9%;
   }
+
+  /* Theme Color Variables */
+  [data-theme-color="pink"] {
+    --primary: 330 81% 60%;
+    --primary-foreground: 210 20% 98%;
+  }
+
+  [data-theme-color="blue"] {
+    --primary: 217 91% 60%;
+    --primary-foreground: 210 20% 98%;
+  }
+
+  [data-theme-color="purple"] {
+    --primary: 262 83% 58%;
+    --primary-foreground: 210 20% 98%;
+  }
+
+  [data-theme-color="red"] {
+    --primary: 0 84% 60%;
+    --primary-foreground: 210 20% 98%;
+  }
+
+  [data-theme-color="green"] {
+    --primary: 142 71% 45%;
+    --primary-foreground: 210 20% 98%;
+  }
+
+  [data-theme-color="yellow"] {
+    --primary: 48 96% 53%;
+    --primary-foreground: 224 71.4% 4.1%;
+  }
 }
 
 @layer base {
@@ -112,6 +143,15 @@ All colors MUST be HSL.
     animation: float 6s ease-in-out infinite;
   }
 
+  .animate-gradient-x {
+    animation: gradient-x 15s ease infinite;
+    background-size: 200% 200%;
+  }
+
+  .bg-300\% {
+    background-size: 300%;
+  }
+
   @keyframes float {
     0%, 100% { 
       transform: translateY(0px) translateX(0px) rotate(0deg); 
@@ -124,6 +164,15 @@ All colors MUST be HSL.
     }
     75% { 
       transform: translateY(-6px) translateX(6px) rotate(0.5deg); 
+    }
+  }
+
+  @keyframes gradient-x {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
     }
   }
 }
