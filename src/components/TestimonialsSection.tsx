@@ -73,7 +73,7 @@ const TestimonialsSection = () => {
   const allTestimonials = [...testimonials, ...testimonials];
 
   return (
-    <section id="testimonials" className="py-24 relative ml-72 overflow-hidden">
+    <section id="testimonials" className="py-24 relative px-8 overflow-hidden">
       <div className="container mx-auto px-8 relative z-10">
         <div className="text-center mb-20">
           <h2 className="font-orbitron text-4xl lg:text-5xl font-bold mb-4" data-aos="fade-up">

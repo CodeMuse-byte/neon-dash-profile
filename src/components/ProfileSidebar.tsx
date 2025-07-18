@@ -1,10 +1,11 @@
 
 import { User, Briefcase, DollarSign, FileText, Package, BookOpen, Mail, ExternalLink } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const ProfileSidebar = () => {
   const [activeItem, setActiveItem] = useState('About');
+  const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
 
   const menuItems = [
@@ -45,8 +46,53 @@ const ProfileSidebar = () => {
     navigate('/');
   };
 
+  const toggleSidebar = () => {
+    setIsOpen(!isOpen);
+    // Dispatch custom event to notify parent component
+    window.dispatchEvent(new CustomEvent('sidebarToggle'));
+  };
+
+  // Close sidebar on escape key
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isOpen) {
+        setIsOpen(false);
+      }
+    };
+    
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [isOpen]);
+
   return (
-    <div className="fixed left-0 top-0 h-screen w-72 bg-card border-r border-border shadow-lg z-50 overflow-hidden flex flex-col">
+    <>
+      {/* Toggle Button */}
+      <button
+        onClick={toggleSidebar}
+        className="fixed top-4 left-4 z-[60] w-10 h-10 bg-card border border-border rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center hover:scale-105"
+        aria-label="Toggle sidebar"
+      >
+        <div className="flex flex-col space-y-1">
+          <div className={`w-5 h-0.5 bg-foreground transition-all duration-300 ${isOpen ? 'rotate-45 translate-y-1.5' : ''}`} />
+          <div className={`w-5 h-0.5 bg-foreground transition-all duration-300 ${isOpen ? 'opacity-0' : ''}`} />
+          <div className={`w-5 h-0.5 bg-foreground transition-all duration-300 ${isOpen ? '-rotate-45 -translate-y-1.5' : ''}`} />
+        </div>
+      </button>
+
+      {/* Overlay */}
+      {isOpen && (
+        <div 
+          className="fixed inset-0 bg-black/50 z-40 transition-opacity duration-400"
+          onClick={() => setIsOpen(false)}
+        />
+      )}
+
+      {/* Sidebar */}
+      <div 
+        className={`fixed left-0 top-0 h-screen w-72 bg-card border-r border-border shadow-lg z-50 overflow-hidden flex flex-col transition-transform duration-400 ease-in-out will-change-transform ${
+          isOpen ? 'transform translate-x-0' : 'transform -translate-x-full'
+        }`}
+      >
       {/* Profile Header */}
       <div className="p-8 text-center border-b border-border">
         <div 
@@ -114,7 +160,8 @@ const ProfileSidebar = () => {
           Hire Me
         </button>
       </div>
-    </div>
+      </div>
+    </>
   );
 };
 

@@ -109,6 +109,9 @@ export default {
 				'fade-in': 'fade-in 0.6s ease-out',
 				'glow': 'glow 2s ease-in-out infinite alternate',
 				'float': 'float 3s ease-in-out infinite',
+			},
+			transitionDuration: {
+				'400': '400ms',
 			}
 		}
 	},

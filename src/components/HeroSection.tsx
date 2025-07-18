@@ -7,7 +7,7 @@ import TypingAnimation from './TypingAnimation';
 
 const HeroSection = () => {
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center py-20">
+    <section id="home" className="relative min-h-screen flex items-center justify-center py-20 px-4">
       {/* 3D Background */}
       <ThreeDBackground />
       

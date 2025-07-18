@@ -44,7 +44,7 @@ const SkillsSection = () => {
   };
 
   return (
-    <section id="skills" className="py-24 relative ml-72">
+    <section id="skills" className="py-24 relative px-8">
       <div className="container mx-auto px-8 relative z-10">
         <div className="text-center mb-20">
           <h2 className="font-orbitron text-4xl lg:text-5xl font-bold mb-4" data-aos="fade-up">
