@@ -108,38 +108,21 @@ const SkillsSection = () => {
                 >
                   {/* Skill Node */}
                   <div className="relative">
-                    <div className={`w-16 h-16 ${colors.bg} backdrop-blur-sm border-2 ${colors.border} rounded-xl flex items-center justify-center group-hover:scale-110 transition-all duration-300 group-hover:shadow-lg`}>
-                      <Icon className={`w-8 h-8 ${colors.text}`} />
+                    <div className={`px-4 py-2 ${colors.bg} backdrop-blur-sm border-2 ${colors.border} rounded-xl flex items-center justify-center group-hover:scale-110 transition-all duration-300 group-hover:shadow-lg min-w-max`}>
+                      <span className={`font-rajdhani font-semibold ${colors.text} text-sm whitespace-nowrap`}>
+                        {skill.name}
+                      </span>
                     </div>
                     
                     {/* Pulsing Ring */}
-                    <div className={`absolute inset-0 w-16 h-16 border-2 ${colors.border} opacity-50 rounded-xl animate-ping`} />
+                    <div className={`absolute inset-0 border-2 ${colors.border} opacity-50 rounded-xl animate-ping`} />
                   </div>
 
-                  {/* Enhanced Tooltip */}
-                  <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-4 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none z-50">
-                    <div className="bg-background/95 backdrop-blur-md border border-border rounded-xl p-4 shadow-2xl min-w-64">
-                      <h3 className="font-orbitron text-lg font-bold text-foreground mb-2">
-                        {skill.name}
-                      </h3>
-                      <div className="space-y-3">
-                        <div className="flex justify-between items-center">
-                          <span className="text-sm font-orbitron font-semibold text-muted-foreground">
-                            Proficiency
-                          </span>
-                          <span className={`text-sm font-bold ${colors.text}`}>
-                            {skill.level}%
-                          </span>
-                        </div>
-                        <div className="w-full bg-muted/30 rounded-full h-2">
-                          <div
-                            className={`h-full bg-gradient-to-r ${colors.progress} rounded-full transition-all duration-1000`}
-                            style={{ width: `${skill.level}%` }}
-                          />
-                        </div>
-                        <div className={`text-xs ${colors.text} font-medium capitalize`}>
-                          {skill.category}
-                        </div>
+                  {/* Simple Tooltip */}
+                  <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none z-50">
+                    <div className="bg-background/95 backdrop-blur-md border border-border rounded-lg px-3 py-2 shadow-xl">
+                      <div className={`text-xs ${colors.text} font-medium capitalize`}>
+                        {skill.category}
                       </div>
                     </div>
                   </div>

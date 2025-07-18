@@ -38,6 +38,8 @@ const ProfileSidebar = () => {
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
         setActiveItem(label);
+        // Hide sidebar after clicking menu item
+        setIsOpen(false);
       }
     }
   };
