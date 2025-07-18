@@ -25,7 +25,7 @@ const Index = () => {
       <ProfileSidebar />
       <HeroSection />
       
-      <div className="ml-72 space-y-24">
+      <div className="ml-72 space-y-16 pr-8">
         <SkillsSection />
         <ProjectsSection />
         <TestimonialsSection />

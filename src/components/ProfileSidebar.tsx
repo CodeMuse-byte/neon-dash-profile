@@ -46,7 +46,7 @@ const ProfileSidebar = () => {
   };
 
   return (
-    <div className="fixed left-0 top-0 h-screen w-72 bg-card border-r border-border shadow-lg z-50 overflow-hidden">
+    <div className="fixed left-0 top-0 h-screen w-72 bg-card border-r border-border shadow-lg z-50 overflow-hidden flex flex-col">
       {/* Profile Header */}
       <div className="p-8 text-center border-b border-border">
         <div 
@@ -76,7 +76,7 @@ const ProfileSidebar = () => {
       </div>
 
       {/* Navigation Menu */}
-      <div className="p-6">
+      <div className="p-6 flex-1 flex flex-col">
         <nav className="space-y-2">
           {menuItems.map((item, index) => {
             const Icon = item.icon;
@@ -109,12 +109,10 @@ const ProfileSidebar = () => {
         </nav>
 
         {/* Hire Me Button */}
-        <div className="mt-8">
-          <button className="w-full bg-blue-500 hover:bg-blue-600 text-white py-4 px-6 rounded-xl font-medium transition-all duration-200 flex items-center justify-center hover:scale-[1.02] shadow-lg shadow-blue-500/25">
-            <ExternalLink className="w-4 h-4 mr-2" />
-            Hire Me
-          </button>
-        </div>
+        <button className="w-full bg-blue-500 hover:bg-blue-600 text-white py-4 px-6 rounded-xl font-medium transition-all duration-200 flex items-center justify-center hover:scale-[1.02] shadow-lg shadow-blue-500/25 mt-auto">
+          <ExternalLink className="w-4 h-4 mr-2" />
+          Hire Me
+        </button>
       </div>
     </div>
   );
