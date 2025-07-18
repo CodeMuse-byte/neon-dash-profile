@@ -46,7 +46,7 @@ const ProfileSidebar = () => {
   };
 
   return (
-    <div className="fixed left-6 top-6 bottom-6 w-72 bg-card border border-border rounded-2xl shadow-lg z-50 overflow-hidden">
+    <div className="fixed left-0 top-0 h-screen w-72 bg-card border-r border-border shadow-lg z-50 overflow-hidden">
       {/* Profile Header */}
       <div className="p-8 text-center border-b border-border">
         <div 
