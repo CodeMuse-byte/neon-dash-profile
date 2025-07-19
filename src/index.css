@@ -47,6 +47,28 @@
   .font-rajdhani {
     font-family: "Rajdhani", sans-serif;
   }
+  
+  /* Smooth scrolling for the entire site */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Enhanced smoothness for all transitions */
+  * {
+    transition-property: transform, opacity, background-color, border-color, color, fill, stroke, box-shadow;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 200ms;
+  }
+  
+  /* Smooth animations for interactive elements */
+  button, a, [role="button"] {
+    transition-duration: 300ms;
+  }
+  
+  /* Performance optimizations */
+  .animate-float, .animate-scroll, .animate-spin-slow {
+    will-change: transform;
+  }
 }
 
 @layer utilities {
