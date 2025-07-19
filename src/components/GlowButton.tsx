@@ -21,18 +21,18 @@ const GlowButton: React.FC<GlowButtonProps> = ({
 }) => {
   const baseClasses = `
     relative inline-flex items-center justify-center px-6 py-3 font-medium
-    border rounded-lg transition-all duration-300 font-rajdhani
-    hover:scale-105 active:scale-95
+    border rounded-lg transition-all duration-300 font-rajdhani will-change-transform
+    hover:scale-105 active:scale-95 hover:shadow-lg
   `;
 
   const variantClasses = {
     primary: `
       bg-primary text-primary-foreground border-primary
-      hover:bg-primary/90
+      hover:bg-primary/90 hover:shadow-primary/25
     `,
     secondary: `
       bg-secondary text-secondary-foreground border-border
-      hover:bg-accent
+      hover:bg-accent hover:shadow-secondary/25
     `,
   };
 

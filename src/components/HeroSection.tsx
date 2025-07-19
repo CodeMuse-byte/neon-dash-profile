@@ -1,4 +1,3 @@
-
 import { Download, ExternalLink } from 'lucide-react';
 import { useState } from 'react';
 import GlowButton from './GlowButton';
@@ -42,12 +41,12 @@ const HeroSection = () => {
             </div>
 
             {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 pt-8" data-aos="fade-up" data-aos-delay="800">
+            <div className="flex flex-col sm:flex-row gap-4 pt-8 transition-all duration-300" data-aos="fade-up" data-aos-delay="800">
               <GlowButton 
                 variant="primary" 
                 icon={ExternalLink}
                 onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
-                className="text-lg px-8 py-4"
+                className="text-lg px-8 py-4 transform hover:scale-105 transition-all duration-300"
               >
                 Explore Projects
               </GlowButton>
@@ -56,7 +55,7 @@ const HeroSection = () => {
                 variant="secondary" 
                 icon={Download}
                 href="/resume.pdf"
-                className="text-lg px-8 py-4"
+                className="text-lg px-8 py-4 transform hover:scale-105 transition-all duration-300"
               >
                 View Resume
               </GlowButton>
