@@ -26,7 +26,7 @@ const HeroSection = () => {
               <h1 className="font-orbitron text-4xl lg:text-6xl xl:text-7xl font-black leading-tight">
                 <TypingAnimation 
                   text="Designer"
-                  className="bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent"
+                  className="text-primary transition-colors duration-300"
                 />
               </h1>
             </div>

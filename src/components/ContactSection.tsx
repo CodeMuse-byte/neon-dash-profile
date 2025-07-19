@@ -194,7 +194,7 @@ const ContactSection = () => {
                 </div>
               </div>
             </div>
-          </div>
+          <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full mt-6 transition-all duration-300" data-aos="fade-up" data-aos-delay="200" />
         </div>
       </div>
     </section>

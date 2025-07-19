@@ -5,7 +5,7 @@ import { useTheme } from '../contexts/ThemeContext';
 
 const SettingsPanel = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { themeColor, themeMode, setThemeColor, setThemeMode, backgroundAnimation, setBackgroundAnimation } = useTheme();
+  const { themeColor, themeMode, backgroundType, setThemeColor, setThemeMode, setBackgroundType } = useTheme();
 
   const colors = [
     { name: 'blue', color: '#3b82f6', label: 'Blue' },
@@ -14,6 +14,15 @@ const SettingsPanel = () => {
     { name: 'red', color: '#ef4444', label: 'Red' },
     { name: 'yellow', color: '#f59e0b', label: 'Yellow' },
     { name: 'pink', color: '#ec4899', label: 'Pink' },
+  ] as const;
+
+  const backgroundOptions = [
+    { id: 'earth-lines', name: 'Earth Lines Sphere', preview: '🌐' },
+    { id: 'abstract-ball', name: '3D Abstract Ball', preview: '⚫' },
+    { id: 'water-waves', name: 'Water Waves', preview: '🌊' },
+    { id: 'liquids-wavy', name: 'Liquids Wavy', preview: '💧' },
+    { id: 'solid-color', name: 'Solid Color', preview: '⬛' },
+    { id: 'simple-strings', name: 'Simple Strings', preview: '🕸️' },
   ] as const;
 
   return (
@@ -40,7 +49,7 @@ const SettingsPanel = () => {
           <div className="relative bg-card border border-border rounded-2xl p-6 w-96 max-w-[90vw] shadow-2xl animate-scale-in">
             {/* Header */}
             <div className="flex items-center justify-between mb-6">
-              <h2 className="font-orbitron text-xl font-bold text-foreground">Theme Settings</h2>
+              <h2 className="font-orbitron text-xl font-bold text-foreground">Customize Experience</h2>
               <button
                 onClick={() => setIsOpen(false)}
                 className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-accent transition-colors"
@@ -83,7 +92,7 @@ const SettingsPanel = () => {
             <div className="mb-6">
               <h3 className="font-orbitron text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
                 <Palette className="w-4 h-4" />
-                ACCENT COLOR
+                DYNAMIC ACCENT
               </h3>
               <div className="grid grid-cols-3 gap-3">
                 {colors.map((color) => (
@@ -107,22 +116,37 @@ const SettingsPanel = () => {
               </div>
             </div>
 
-            {/* Background Animation */}
+            {/* 3D Background Selection */}
             <div>
               <h3 className="font-orbitron text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
                 <Waves className="w-4 h-4" />
-                3D BACKGROUND
+                3D BACKGROUND STYLE
               </h3>
-              <button
-                onClick={() => setBackgroundAnimation(!backgroundAnimation)}
-                className={`w-full p-3 rounded-lg border text-sm font-medium transition-all ${
-                  backgroundAnimation 
-                    ? 'bg-primary text-primary-foreground border-primary' 
-                    : 'bg-muted hover:bg-accent border-border'
-                }`}
-              >
-                {backgroundAnimation ? 'Disable Animation' : 'Enable Animation'}
-              </button>
+              <div className="grid grid-cols-2 gap-2">
+                {backgroundOptions.map((option) => (
+                  <button
+                    key={option.id}
+                    onClick={() => setBackgroundType(option.id as any)}
+                    className={`p-3 rounded-lg border text-xs font-medium transition-all hover:scale-105 ${
+                      backgroundType === option.id 
+                        ? 'bg-primary text-primary-foreground border-primary ring-2 ring-primary/20' 
+                        : 'bg-muted hover:bg-accent border-border hover:border-primary/50'
+                    }`}
+                  >
+                    <div 
+                      className="text-lg mb-1"
+                      style={{ 
+                        filter: backgroundType === option.id ? 'brightness(1.2)' : 'none'
+                      }}
+                    >
+                      {option.preview}
+                    </div>
+                    <div className="leading-tight">
+                      {option.name}
+                    </div>
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         </div>
