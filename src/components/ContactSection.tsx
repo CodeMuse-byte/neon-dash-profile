@@ -1,6 +1,7 @@
 
-import { Home, MapPin, Badge, Mail, MessageSquare, Send, Paperclip } from 'lucide-react';
+import { Home, MapPin, Mail, MessageSquare, Send, Paperclip } from 'lucide-react';
 import { useState } from 'react';
+import { Badge } from './ui/badge';
 import GlowButton from './GlowButton';
 
 const ContactSection = () => {
