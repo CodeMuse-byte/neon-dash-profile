@@ -4,8 +4,18 @@ import { useRef, useMemo } from 'react';
 import * as THREE from 'three';
 import { useTheme } from '../contexts/ThemeContext';
 
+// Helper function to convert HSL string to THREE.Color
+const hslToThreeColor = (hslString: string): THREE.Color => {
+  const [h, s, l] = hslString.split(' ').map((val, index) => {
+    if (index === 0) return parseInt(val) / 360; // Hue: 0-1
+    return parseInt(val.replace('%', '')) / 100; // Saturation and Lightness: 0-1
+  });
+  return new THREE.Color().setHSL(h, s, l);
+};
+
 // Earth Lines Sphere Component
 const EarthLinesSphere = () => {
+  const { primaryHSL, secondaryHSL } = useTheme();
   const meshRef = useRef<THREE.Mesh>(null);
   const linesRef = useRef<THREE.LineSegments>(null);
 
@@ -29,10 +39,10 @@ const EarthLinesSphere = () => {
   return (
     <group>
       <lineSegments ref={linesRef} geometry={geometry.wireframe}>
-        <lineBasicMaterial color="hsl(var(--primary))" transparent opacity={0.6} />
+        <lineBasicMaterial color={hslToThreeColor(primaryHSL)} transparent opacity={0.6} />
       </lineSegments>
       <mesh ref={meshRef} geometry={geometry.sphere} scale={0.8}>
-        <meshBasicMaterial color="hsl(var(--secondary))" transparent opacity={0.1} wireframe />
+        <meshBasicMaterial color={hslToThreeColor(secondaryHSL)} transparent opacity={0.1} wireframe />
       </mesh>
     </group>
   );
@@ -40,6 +50,7 @@ const EarthLinesSphere = () => {
 
 // Abstract Ball Component
 const AbstractBall = () => {
+  const { primaryHSL } = useTheme();
   const meshRef = useRef<THREE.Mesh>(null);
   
   const geometry = useMemo(() => new THREE.IcosahedronGeometry(2, 1), []);
@@ -55,7 +66,7 @@ const AbstractBall = () => {
   return (
     <mesh ref={meshRef} geometry={geometry}>
       <meshPhongMaterial 
-        color="hsl(var(--primary))" 
+        color={hslToThreeColor(primaryHSL)} 
         transparent 
         opacity={0.7}
         shininess={100}
@@ -66,6 +77,7 @@ const AbstractBall = () => {
 
 // Water Waves Component
 const WaterWaves = () => {
+  const { primaryHSL, secondaryHSL } = useTheme();
   const meshRef = useRef<THREE.Mesh>(null);
   const materialRef = useRef<THREE.ShaderMaterial>(null);
 
@@ -73,8 +85,8 @@ const WaterWaves = () => {
     return new THREE.ShaderMaterial({
       uniforms: {
         time: { value: 0 },
-        color1: { value: new THREE.Color('hsl(var(--primary))') },
-        color2: { value: new THREE.Color('hsl(var(--secondary))') },
+        color1: { value: hslToThreeColor(primaryHSL) },
+        color2: { value: hslToThreeColor(secondaryHSL) },
       },
       vertexShader: `
         uniform float time;
@@ -108,7 +120,7 @@ const WaterWaves = () => {
       transparent: true,
       side: THREE.DoubleSide,
     });
-  }, []);
+  }, [primaryHSL, secondaryHSL]);
 
   useFrame((state) => {
     if (materialRef.current) {
@@ -130,6 +142,7 @@ const WaterWaves = () => {
 
 // Liquids Wavy Component
 const LiquidsWavy = () => {
+  const { secondaryHSL } = useTheme();
   const meshRef = useRef<THREE.Mesh>(null);
   
   useFrame((state) => {
@@ -143,7 +156,7 @@ const LiquidsWavy = () => {
     <mesh ref={meshRef}>
       <torusGeometry args={[2, 0.8, 16, 100]} />
       <meshPhongMaterial 
-        color="hsl(var(--secondary))" 
+        color={hslToThreeColor(secondaryHSL)} 
         transparent 
         opacity={0.6}
         shininess={100}
@@ -154,16 +167,19 @@ const LiquidsWavy = () => {
 
 // Solid Color Component
 const SolidColor = () => {
+  const { primaryHSL } = useTheme();
+  
   return (
     <mesh>
       <planeGeometry args={[50, 50]} />
-      <meshBasicMaterial color="hsl(var(--primary))" transparent opacity={0.1} />
+      <meshBasicMaterial color={hslToThreeColor(primaryHSL)} transparent opacity={0.1} />
     </mesh>
   );
 };
 
 // Simple Strings Component
 const SimpleStrings = () => {
+  const { primaryHSL } = useTheme();
   const groupRef = useRef<THREE.Group>(null);
   
   const lines = useMemo(() => {
@@ -193,9 +209,9 @@ const SimpleStrings = () => {
   return (
     <group ref={groupRef}>
       {lines.map((geometry, index) => (
-        <line key={index} geometry={geometry}>
-          <lineBasicMaterial color="hsl(var(--primary))" transparent opacity={0.4} />
-        </line>
+        <lineSegments key={index} geometry={geometry}>
+          <lineBasicMaterial color={hslToThreeColor(primaryHSL)} transparent opacity={0.4} />
+        </lineSegments>
       ))}
     </group>
   );
@@ -279,8 +295,8 @@ const ThreeDBackground = () => {
     <div className="fixed inset-0 -z-10">
       <Canvas camera={{ position: [0, 0, 8], fov: 60 }}>
         <ambientLight intensity={0.2} />
-        <pointLight position={[10, 10, 10]} intensity={0.4} color="hsl(var(--primary))" />
-        <pointLight position={[-10, -10, 10]} intensity={0.4} color="hsl(var(--secondary))" />
+        <pointLight position={[10, 10, 10]} intensity={0.4} color={hslToThreeColor(useTheme().primaryHSL)} />
+        <pointLight position={[-10, -10, 10]} intensity={0.4} color={hslToThreeColor(useTheme().secondaryHSL)} />
         {getBackgroundComponent()}
         <ParticleField />
       </Canvas>

@@ -9,6 +9,8 @@ interface ThemeContextType {
   themeColor: ThemeColor;
   themeMode: ThemeMode;
   backgroundType: BackgroundType;
+  primaryHSL: string;
+  secondaryHSL: string;
   setThemeColor: (color: ThemeColor) => void;
   setThemeMode: (mode: ThemeMode) => void;
   setBackgroundType: (type: BackgroundType) => void;
@@ -28,6 +30,18 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const [themeColor, setThemeColor] = useState<ThemeColor>('blue');
   const [themeMode, setThemeMode] = useState<ThemeMode>('light');
   const [backgroundType, setBackgroundType] = useState<BackgroundType>('earth-lines');
+  
+  // Color map for HSL values
+  const colorMap = {
+    blue: { primary: '217 91% 60%', secondary: '221 83% 53%' },
+    purple: { primary: '263 70% 50%', secondary: '271 81% 56%' },
+    green: { primary: '142 76% 36%', secondary: '160 84% 39%' },
+    red: { primary: '0 84% 60%', secondary: '348 83% 47%' },
+    yellow: { primary: '48 96% 53%', secondary: '45 93% 47%' },
+    pink: { primary: '330 81% 60%', secondary: '340 82% 52%' }
+  };
+  
+  const currentColors = colorMap[themeColor];
 
   useEffect(() => {
     // Load saved preferences
@@ -52,18 +66,8 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     document.documentElement.setAttribute('data-theme-color', themeColor);
     
     // Set CSS custom properties for dynamic theming
-    const colorMap = {
-      blue: { primary: '217 91% 60%', secondary: '221 83% 53%' },
-      purple: { primary: '263 70% 50%', secondary: '271 81% 56%' },
-      green: { primary: '142 76% 36%', secondary: '160 84% 39%' },
-      red: { primary: '0 84% 60%', secondary: '348 83% 47%' },
-      yellow: { primary: '48 96% 53%', secondary: '45 93% 47%' },
-      pink: { primary: '330 81% 60%', secondary: '340 82% 52%' }
-    };
-    
-    const colors = colorMap[themeColor];
-    document.documentElement.style.setProperty('--primary', colors.primary);
-    document.documentElement.style.setProperty('--secondary', colors.secondary);
+    document.documentElement.style.setProperty('--primary', currentColors.primary);
+    document.documentElement.style.setProperty('--secondary', currentColors.secondary);
     
     // Save preferences
     localStorage.setItem('themeColor', themeColor);
@@ -76,6 +80,8 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       themeColor,
       themeMode,
       backgroundType,
+      primaryHSL: currentColors.primary,
+      secondaryHSL: currentColors.secondary,
       setThemeColor,
       setThemeMode,
       setBackgroundType
