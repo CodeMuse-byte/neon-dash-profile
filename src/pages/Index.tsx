@@ -16,10 +16,12 @@ const Index = () => {
 
   useEffect(() => {
     AOS.init({
-      duration: 800,
-      delay: 100,
+      duration: 1000,
+      delay: 150,
       once: true,
-      easing: 'ease-out-cubic',
+      easing: 'ease-out-quart',
+      offset: 50,
+      anchorPlacement: 'top-bottom',
     });
   }, []);
 
@@ -35,11 +37,11 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+    <div className="min-h-screen bg-background text-foreground overflow-x-hidden transition-all duration-500 ease-out">
       <ProfileSidebar />
       
       {/* Main Content Wrapper */}
-      <div className={`transition-transform duration-400 ease-in-out will-change-transform ${
+      <div className={`transition-all duration-500 ease-out will-change-transform ${
         sidebarOpen ? 'transform translate-x-[200px]' : 'transform translate-x-0'
       }`}>
         <HeroSection />

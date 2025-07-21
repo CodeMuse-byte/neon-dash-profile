@@ -23,7 +23,7 @@ const CoverPage = () => {
   };
 
   const handleSkipToPortfolio = () => {
-    navigate('/portfolio#projects');
+    navigate('/portfolio');
   };
 
   return (

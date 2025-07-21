@@ -91,7 +91,7 @@ const ProfileSidebar = () => {
 
       {/* Sidebar */}
       <div 
-        className={`fixed left-0 top-0 h-screen w-72 bg-card border-r border-border shadow-lg z-50 overflow-hidden flex flex-col transition-transform duration-400 ease-in-out will-change-transform ${
+        className={`fixed left-0 top-0 h-screen w-72 bg-card border-r border-border shadow-2xl z-50 overflow-hidden flex flex-col transition-all duration-500 ease-out will-change-transform backdrop-blur-md ${
           isOpen ? 'transform translate-x-0' : 'transform -translate-x-full'
         }`}
       >

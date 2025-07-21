@@ -72,18 +72,31 @@
   /* Smooth scrolling for the entire site */
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 2rem;
   }
   
   /* Enhanced smoothness for all transitions */
   * {
-    transition-property: transform, opacity, background-color, border-color, color, fill, stroke, box-shadow;
+    transition-property: transform, opacity, background-color, border-color, color, fill, stroke, box-shadow, filter, backdrop-filter;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 200ms;
+    transition-duration: 300ms;
   }
   
   /* Smooth animations for interactive elements */
   button, a, [role="button"] {
-    transition-duration: 300ms;
+    transition-duration: 400ms;
+    transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  /* Enhanced hover effects */
+  button:hover, a:hover, [role="button"]:hover {
+    transform: translateY(-1px);
+    transition-duration: 200ms;
+  }
+  
+  /* Smooth page transitions */
+  .page-transition {
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
   
   /* Performance optimizations */
@@ -91,13 +104,28 @@
     will-change: transform;
   }
   
+  /* Smooth backdrop blur transitions */
+  .backdrop-blur-sm, .backdrop-blur-md, .backdrop-blur-lg {
+    transition: backdrop-filter 0.3s ease;
+  }
+  
   /* Dynamic theming for major elements */
   .text-primary, .border-primary, .bg-primary {
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
   
   h1, h2, h3, .font-orbitron {
-    transition: color 0.3s ease;
+    transition: color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  /* Smooth card hover effects */
+  .card-hover {
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  .card-hover:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
   }
 }
 
