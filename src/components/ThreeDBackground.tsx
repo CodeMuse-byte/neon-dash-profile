@@ -143,25 +143,250 @@ const WaterWaves = () => {
 // Liquids Wavy Component
 const LiquidsWavy = () => {
   const { secondaryHSL } = useTheme();
-  const meshRef = useRef<THREE.Mesh>(null);
+  const groupRef = useRef<THREE.Group>(null);
+  const materialRef = useRef<THREE.ShaderMaterial>(null);
+  const material2Ref = useRef<THREE.ShaderMaterial>(null);
+  const material3Ref = useRef<THREE.ShaderMaterial>(null);
+
+  // Advanced liquid shader material
+  const liquidShaderMaterial = useMemo(() => {
+    return new THREE.ShaderMaterial({
+      uniforms: {
+        time: { value: 0 },
+        color1: { value: hslToThreeColor(primaryHSL) },
+        color2: { value: hslToThreeColor(secondaryHSL) },
+        opacity: { value: 0.8 },
+        distortion: { value: 0.3 },
+        speed: { value: 1.0 },
+      },
+      vertexShader: `
+        uniform float time;
+        uniform float distortion;
+        uniform float speed;
+        varying vec2 vUv;
+        varying vec3 vNormal;
+        varying vec3 vPosition;
+        
+        // Noise function for organic movement
+        vec3 mod289(vec3 x) {
+          return x - floor(x * (1.0 / 289.0)) * 289.0;
+        }
+        
+        vec4 mod289(vec4 x) {
+          return x - floor(x * (1.0 / 289.0)) * 289.0;
+        }
+        
+        vec4 permute(vec4 x) {
+          return mod289(((x*34.0)+1.0)*x);
+        }
+        
+        vec4 taylorInvSqrt(vec4 r) {
+          return 1.79284291400159 - 0.85373472095314 * r;
+        }
+        
+        float snoise(vec3 v) {
+          const vec2 C = vec2(1.0/6.0, 1.0/3.0);
+          const vec4 D = vec4(0.0, 0.5, 1.0, 2.0);
+          
+          vec3 i = floor(v + dot(v, C.yyy));
+          vec3 x0 = v - i + dot(i, C.xxx);
+          
+          vec3 g = step(x0.yzx, x0.xyz);
+          vec3 l = 1.0 - g;
+          vec3 i1 = min(g.xyz, l.zxy);
+          vec3 i2 = max(g.xyz, l.zxy);
+          
+          vec3 x1 = x0 - i1 + C.xxx;
+          vec3 x2 = x0 - i2 + C.yyy;
+          vec3 x3 = x0 - D.yyy;
+          
+          i = mod289(i);
+          vec4 p = permute(permute(permute(
+                   i.z + vec4(0.0, i1.z, i2.z, 1.0))
+                 + i.y + vec4(0.0, i1.y, i2.y, 1.0))
+                 + i.x + vec4(0.0, i1.x, i2.x, 1.0));
+          
+          float n_ = 0.142857142857;
+          vec3 ns = n_ * D.wyz - D.xzx;
+          
+          vec4 j = p - 49.0 * floor(p * ns.z * ns.z);
+          
+          vec4 x_ = floor(j * ns.z);
+          vec4 y_ = floor(j - 7.0 * x_);
+          
+          vec4 x = x_ *ns.x + ns.yyyy;
+          vec4 y = y_ *ns.x + ns.yyyy;
+          vec4 h = 1.0 - abs(x) - abs(y);
+          
+          vec4 b0 = vec4(x.xy, y.xy);
+          vec4 b1 = vec4(x.zw, y.zw);
+          
+          vec4 s0 = floor(b0) * 2.0 + 1.0;
+          vec4 s1 = floor(b1) * 2.0 + 1.0;
+          vec4 sh = -step(h, vec4(0.0));
+          
+          vec4 a0 = b0.xzyw + s0.xzyw * sh.xxyy;
+          vec4 a1 = b1.xzyw + s1.xzyw * sh.zzww;
+          
+          vec3 p0 = vec3(a0.xy, h.x);
+          vec3 p1 = vec3(a0.zw, h.y);
+          vec3 p2 = vec3(a1.xy, h.z);
+          vec3 p3 = vec3(a1.zw, h.w);
+          
+          vec4 norm = taylorInvSqrt(vec4(dot(p0,p0), dot(p1,p1), dot(p2, p2), dot(p3,p3)));
+          p0 *= norm.x;
+          p1 *= norm.y;
+          p2 *= norm.z;
+          p3 *= norm.w;
+          
+          vec4 m = max(0.6 - vec4(dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3)), 0.0);
+          m = m * m;
+          return 42.0 * dot(m*m, vec4(dot(p0,x0), dot(p1,x1), dot(p2,x2), dot(p3,x3)));
+        }
+        
+        void main() {
+          vUv = uv;
+          vNormal = normalize(normalMatrix * normal);
+          
+          vec3 pos = position;
+          float t = time * speed * 0.5;
+          
+          // Create flowing liquid distortion
+          float noise1 = snoise(pos * 0.8 + vec3(t * 0.3, t * 0.2, t * 0.1));
+          float noise2 = snoise(pos * 1.2 + vec3(t * 0.2, t * 0.4, t * 0.3));
+          float noise3 = snoise(pos * 2.0 + vec3(t * 0.1, t * 0.3, t * 0.5));
+          
+          // Combine noise for organic movement
+          vec3 displacement = normal * (noise1 * 0.3 + noise2 * 0.2 + noise3 * 0.1) * distortion;
+          pos += displacement;
+          
+          vPosition = pos;
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
+        }
+      `,
+      fragmentShader: `
+        uniform float time;
+        uniform vec3 color1;
+        uniform vec3 color2;
+        uniform float opacity;
+        uniform float speed;
+        varying vec2 vUv;
+        varying vec3 vNormal;
+        varying vec3 vPosition;
+        
+        void main() {
+          vec3 viewDirection = normalize(cameraPosition - vPosition);
+          float fresnel = pow(1.0 - dot(vNormal, viewDirection), 2.0);
+          
+          // Create flowing color patterns
+          float t = time * speed * 0.3;
+          float colorMix = sin(vPosition.x * 2.0 + t) * sin(vPosition.y * 1.5 + t * 0.8) * 0.5 + 0.5;
+          
+          // Glossy liquid color
+          vec3 baseColor = mix(color1, color2, colorMix);
+          
+          // Add metallic reflection
+          vec3 reflection = baseColor + fresnel * 0.8;
+          
+          // Create depth and glossiness
+          float depth = 1.0 - fresnel;
+          vec3 finalColor = mix(reflection, baseColor * 0.3, depth * 0.7);
+          
+          gl_FragColor = vec4(finalColor, opacity * (0.6 + fresnel * 0.4));
+        }
+      `,
+      transparent: true,
+      side: THREE.DoubleSide,
+    });
+  }, [primaryHSL, secondaryHSL]);
+
+  // Secondary liquid material for layering
+  const liquidShaderMaterial2 = useMemo(() => {
+    return new THREE.ShaderMaterial({
+      uniforms: {
+        time: { value: 0 },
+        color1: { value: hslToThreeColor(secondaryHSL) },
+        color2: { value: hslToThreeColor(primaryHSL) },
+        opacity: { value: 0.4 },
+        distortion: { value: 0.2 },
+        speed: { value: 0.7 },
+      },
+      vertexShader: liquidShaderMaterial.vertexShader,
+      fragmentShader: liquidShaderMaterial.fragmentShader,
+      transparent: true,
+      side: THREE.DoubleSide,
+    });
+  }, [primaryHSL, secondaryHSL, liquidShaderMaterial]);
+
+  // Tertiary liquid material for more depth
+  const liquidShaderMaterial3 = useMemo(() => {
+    return new THREE.ShaderMaterial({
+      uniforms: {
+        time: { value: 0 },
+        color1: { value: new THREE.Color(0.1, 0.1, 0.2) },
+        color2: { value: hslToThreeColor(primaryHSL).multiplyScalar(0.3) },
+        opacity: { value: 0.6 },
+        distortion: { value: 0.4 },
+        speed: { value: 1.3 },
+      },
+      vertexShader: liquidShaderMaterial.vertexShader,
+      fragmentShader: liquidShaderMaterial.fragmentShader,
+      transparent: true,
+      side: THREE.DoubleSide,
+    });
+  }, [primaryHSL, liquidShaderMaterial]);
   
   useFrame((state) => {
-    if (meshRef.current) {
-      meshRef.current.rotation.y = state.clock.elapsedTime * 0.1;
-      meshRef.current.position.y = Math.sin(state.clock.elapsedTime * 0.5) * 0.5;
+    const time = state.clock.elapsedTime;
+    
+    // Update shader uniforms
+    if (materialRef.current) {
+      materialRef.current.uniforms.time.value = time;
+    }
+    if (material2Ref.current) {
+      material2Ref.current.uniforms.time.value = time;
+    }
+    if (material3Ref.current) {
+      material3Ref.current.uniforms.time.value = time;
+    }
+    
+    if (groupRef.current) {
+      groupRef.current.rotation.y = time * 0.05;
+      groupRef.current.rotation.x = Math.sin(time * 0.3) * 0.1;
     }
   });
 
   return (
-    <mesh ref={meshRef}>
-      <torusGeometry args={[2, 0.8, 16, 100]} />
-      <meshPhongMaterial 
-        color={hslToThreeColor(secondaryHSL)} 
-        transparent 
-        opacity={0.6}
-        shininess={100}
-      />
-    </mesh>
+    <group ref={groupRef}>
+      {/* Main liquid blob */}
+      <mesh scale={[2.5, 1.8, 2.5]} position={[0, 0, 0]}>
+        <sphereGeometry args={[1, 64, 64]} />
+        <primitive object={liquidShaderMaterial} ref={materialRef} />
+      </mesh>
+      
+      {/* Secondary flowing layer */}
+      <mesh scale={[2.8, 1.5, 2.8]} position={[0.5, 0.3, -0.2]} rotation={[0.2, 0.5, 0.1]}>
+        <sphereGeometry args={[1, 48, 48]} />
+        <primitive object={liquidShaderMaterial2} ref={material2Ref} />
+      </mesh>
+      
+      {/* Tertiary depth layer */}
+      <mesh scale={[3.2, 1.2, 3.2]} position={[-0.3, -0.2, 0.4]} rotation={[-0.1, -0.3, 0.2]}>
+        <sphereGeometry args={[1, 32, 32]} />
+        <primitive object={liquidShaderMaterial3} ref={material3Ref} />
+      </mesh>
+      
+      {/* Additional flowing elements */}
+      <mesh scale={[1.5, 2.5, 1.5]} position={[1.2, 0, -1]} rotation={[0.3, 0.8, 0]}>
+        <capsuleGeometry args={[0.5, 1.5, 4, 8]} />
+        <primitive object={liquidShaderMaterial2} />
+      </mesh>
+      
+      <mesh scale={[1.8, 1.8, 1.8]} position={[-1.5, 0.5, 0.8]} rotation={[-0.2, -0.6, 0.4]}>
+        <octahedronGeometry args={[1, 2]} />
+        <primitive object={liquidShaderMaterial} />
+      </mesh>
+    </group>
   );
 };
 
