@@ -45,14 +45,6 @@ const ContactSection = () => {
             </p>
             <div className="w-24 h-1 bg-primary mx-auto rounded-full mt-6" data-aos="fade-up" data-aos-delay="200" />
           </div>
-          <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full mt-6 transition-all duration-300" data-aos="fade-up" data-aos-delay="200" />
-        </div>
-      </div>
-    </section>
-  );
-};
-
-export default ContactSection;
           <div className="grid lg:grid-cols-3 gap-12">
             {/* Contact Cards */}
             <div className="lg:col-span-1 space-y-6" data-aos="fade-right" data-aos-delay="300">
@@ -201,7 +193,7 @@ export default ContactSection;
                 </div>
               </div>
             </div>
-          <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full mt-6 transition-all duration-300" data-aos="fade-up" data-aos-delay="200" />
+          </div>
         </div>
       </div>
     </section>
@@ -209,6 +201,3 @@ export default ContactSection;
 };
 
 export default ContactSection;
-
-  )
-}
