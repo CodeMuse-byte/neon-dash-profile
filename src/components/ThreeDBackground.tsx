@@ -142,7 +142,7 @@ const WaterWaves = () => {
 
 // Liquids Wavy Component
 const LiquidsWavy = () => {
-  const { secondaryHSL } = useTheme();
+  const { primaryHSL, secondaryHSL } = useTheme();
   const groupRef = useRef<THREE.Group>(null);
   const materialRef = useRef<THREE.ShaderMaterial>(null);
   const material2Ref = useRef<THREE.ShaderMaterial>(null);
