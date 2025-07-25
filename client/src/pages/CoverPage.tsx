@@ -2,7 +2,7 @@
 import { useEffect } from 'react';
 import { ArrowRight, User } from 'lucide-react';
 import { useLocation } from 'wouter';
-import SimpleFallbackBackground from '../components/SimpleFallbackBackground';
+import DynamicBackground from '../components/DynamicBackground';
 
 const CoverPage = () => {
   const [location, setLocation] = useLocation();
@@ -28,8 +28,8 @@ const CoverPage = () => {
 
   return (
     <div className="min-h-screen bg-background relative overflow-hidden flex items-center justify-center">
-      {/* Simple Background */}
-      <SimpleFallbackBackground />
+      {/* Dynamic Background */}
+      <DynamicBackground />
       
       {/* Enhanced Floating Stars Background Overlay */}
       <div className="absolute inset-0 z-10">

@@ -1,14 +1,14 @@
 import { Download, ExternalLink } from 'lucide-react';
 import { useState } from 'react';
 import GlowButton from './GlowButton';
-import SimpleHeroBackground from './SimpleHeroBackground';
+import DynamicBackground from './DynamicBackground';
 import TypingAnimation from './TypingAnimation';
 
 const HeroSection = () => {
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center py-20 px-4">
-      {/* Simple Background */}
-      <SimpleHeroBackground />
+      {/* Dynamic Background */}
+      <DynamicBackground />
       
       <div className="container mx-auto px-4 z-10 max-w-6xl">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
