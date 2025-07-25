@@ -1,12 +1,12 @@
 
 import { User, Briefcase, DollarSign, FileText, Package, BookOpen, Mail, ExternalLink } from 'lucide-react';
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'wouter';
 
 const ProfileSidebar = () => {
   const [activeItem, setActiveItem] = useState('About');
   const [isOpen, setIsOpen] = useState(false);
-  const navigate = useNavigate();
+  const [location, setLocation] = useLocation();
 
   const menuItems = [
     { icon: User, label: 'About', isActive: true },
@@ -45,7 +45,7 @@ const ProfileSidebar = () => {
   };
 
   const handlePhotoClick = () => {
-    navigate('/');
+    setLocation('/');
   };
 
   const toggleSidebar = () => {

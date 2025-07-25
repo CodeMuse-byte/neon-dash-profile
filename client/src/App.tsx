@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Router, Route, Switch } from "wouter";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Index from "./pages/Index";
 import CoverPage from "./pages/CoverPage";
@@ -17,16 +17,16 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<CoverPage />} />
-            <Route path="/cover" element={<CoverPage />} />
-            <Route path="/portfolio" element={<Index />} />
-            <Route path="/home" element={<Index />} />
+        <Router>
+          <Switch>
+            <Route path="/" component={CoverPage} />
+            <Route path="/cover" component={CoverPage} />
+            <Route path="/portfolio" component={Index} />
+            <Route path="/home" component={Index} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
+            <Route component={NotFound} />
+          </Switch>
+        </Router>
       </TooltipProvider>
     </ThemeProvider>
   </QueryClientProvider>

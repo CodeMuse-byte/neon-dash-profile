@@ -1,11 +1,11 @@
 
 import { useEffect } from 'react';
 import { ArrowRight, User } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
-import Background3D from '../components/Background3D';
+import { useLocation } from 'wouter';
+import SimpleFallbackBackground from '../components/SimpleFallbackBackground';
 
 const CoverPage = () => {
-  const navigate = useNavigate();
+  const [location, setLocation] = useLocation();
 
   useEffect(() => {
     // Staggered animations on load
@@ -19,17 +19,17 @@ const CoverPage = () => {
   }, []);
 
   const handleStartStory = () => {
-    navigate('/portfolio');
+    setLocation('/portfolio');
   };
 
   const handleSkipToPortfolio = () => {
-    navigate('/portfolio');
+    setLocation('/portfolio');
   };
 
   return (
     <div className="min-h-screen bg-background relative overflow-hidden flex items-center justify-center">
-      {/* 3D Background */}
-      <Background3D />
+      {/* Simple Background */}
+      <SimpleFallbackBackground />
       
       {/* Enhanced Floating Stars Background Overlay */}
       <div className="absolute inset-0 z-10">
