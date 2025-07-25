@@ -1,7 +1,7 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
-type ThemeColor = 'blue' | 'purple' | 'green' | 'red' | 'yellow' | 'pink';
+type ThemeColor = 'blue' | 'purple' | 'green' | 'red' | 'yellow' | 'pink' | 'orange' | 'cyan';
 type BackgroundType = 'earth-lines' | 'abstract-ball' | 'water-waves' | 'liquids-wavy' | 'solid-color' | 'simple-strings';
 type ThemeMode = 'light' | 'dark';
 
@@ -38,7 +38,9 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     green: { primary: '142 76% 36%', secondary: '160 84% 39%' },
     red: { primary: '0 84% 60%', secondary: '348 83% 47%' },
     yellow: { primary: '48 96% 53%', secondary: '45 93% 47%' },
-    pink: { primary: '330 81% 60%', secondary: '340 82% 52%' }
+    pink: { primary: '330 81% 60%', secondary: '340 82% 52%' },
+    orange: { primary: '24 95% 53%', secondary: '20 91% 48%' },
+    cyan: { primary: '188 94% 42%', secondary: '186 83% 53%' }
   };
   
   const currentColors = colorMap[themeColor];
