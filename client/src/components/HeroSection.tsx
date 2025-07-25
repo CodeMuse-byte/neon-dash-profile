@@ -102,23 +102,7 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* Stats */}
-        <div className="grid grid-cols-3 gap-8 pt-16 max-w-2xl mx-auto lg:mx-0" data-aos="fade-up" data-aos-delay="900">
-          {[
-            { number: '5+', label: 'Years\nExperience' },
-            { number: '110+', label: 'Projects\nCompleted' },
-            { number: '6K+', label: 'Clients\nWorldwide' }
-          ].map((stat, index) => (
-            <div key={stat.label} className="text-center" data-aos="zoom-in" data-aos-delay={1000 + index * 100}>
-              <div className="text-3xl lg:text-5xl font-orbitron font-black text-primary mb-2">
-                {stat.number}
-              </div>
-              <div className="text-sm text-muted-foreground font-rajdhani whitespace-pre-line">
-                {stat.label}
-              </div>
-            </div>
-          ))}
-        </div>
+        
       </div>
     </section>
   );
