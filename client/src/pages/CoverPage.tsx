@@ -1,6 +1,6 @@
 
 import { useEffect } from 'react';
-import { ArrowRight, User } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { useLocation } from 'wouter';
 import DynamicBackground from '../components/DynamicBackground';
 
@@ -22,9 +22,7 @@ const CoverPage = () => {
     setLocation('/portfolio');
   };
 
-  const handleSkipToPortfolio = () => {
-    setLocation('/portfolio');
-  };
+
 
   return (
     <div className="min-h-screen bg-background relative overflow-hidden flex items-center justify-center">
@@ -77,24 +75,14 @@ const CoverPage = () => {
             </div>
 
             {/* Buttons */}
-            <div className="animate-on-load opacity-0 translate-y-8 transition-all duration-700 ease-out space-y-4 lg:space-y-0 lg:space-x-6 lg:flex">
+            <div className="animate-on-load opacity-0 translate-y-8 transition-all duration-700 ease-out flex justify-center lg:justify-start">
               <button
                 onClick={handleStartStory}
-                className="group relative w-full lg:w-auto px-8 py-4 bg-primary text-primary-foreground rounded-lg font-rajdhani text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-primary/50 border border-primary/50 transform hover:rotate-1"
+                className="group relative px-8 py-4 bg-primary text-primary-foreground rounded-lg font-rajdhani text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-primary/50 border border-primary/50 transform hover:rotate-1"
               >
                 <div className="flex items-center justify-center space-x-2">
                   <span>Start Story</span>
                   <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1 group-hover:scale-110" />
-                </div>
-              </button>
-
-              <button
-                onClick={handleSkipToPortfolio}
-                className="group relative w-full lg:w-auto px-8 py-4 bg-card border border-border text-card-foreground rounded-lg font-rajdhani text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl hover:border-primary/50 transform hover:-rotate-1"
-              >
-                <div className="flex items-center justify-center space-x-2">
-                  <span>Skip to Portfolio</span>
-                  <User className="w-5 h-5 transition-transform group-hover:scale-110" />
                 </div>
               </button>
             </div>
