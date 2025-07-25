@@ -7,7 +7,6 @@ interface GlowButtonProps {
   variant?: 'primary' | 'secondary';
   icon?: LucideIcon;
   onClick?: () => void;
-  href?: string;
   className?: string;
 }
 
@@ -16,7 +15,6 @@ const GlowButton: React.FC<GlowButtonProps> = ({
   variant = 'primary',
   icon: Icon,
   onClick,
-  href,
   className = '',
 }) => {
   const baseClasses = `
@@ -45,19 +43,6 @@ const GlowButton: React.FC<GlowButtonProps> = ({
       <span>{children}</span>
     </>
   );
-
-  if (href) {
-    return (
-      <a
-        href={href}
-        className={combinedClasses}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {content}
-      </a>
-    );
-  }
 
   return (
     <button onClick={onClick} className={combinedClasses}>
