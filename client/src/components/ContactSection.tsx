@@ -8,8 +8,7 @@ const ContactSection = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    message: '',
-    attachment: null as File | null
+    message: ''
   });
 
   const scrollToHome = () => {
@@ -20,14 +19,6 @@ const ContactSection = () => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
-    });
-  };
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0] || null;
-    setFormData({
-      ...formData,
-      attachment: file
     });
   };
 
@@ -157,31 +148,6 @@ const ContactSection = () => {
                       className="w-full px-4 py-3 bg-background/50 backdrop-blur-sm border border-border rounded-xl text-foreground placeholder-muted-foreground focus:border-primary focus:outline-none transition-colors resize-none"
                       placeholder="Tell me about your project requirements, timeline, and budget..."
                     />
-                  </div>
-
-                  {/* File Attachment */}
-                  <div>
-                    <label htmlFor="attachment" className="block text-sm font-orbitron font-semibold text-foreground mb-2">
-                      Attachment (Optional)
-                    </label>
-                    <div className="relative">
-                      <input
-                        type="file"
-                        id="attachment"
-                        onChange={handleFileChange}
-                        className="hidden"
-                        accept=".pdf,.doc,.docx,.txt,.jpg,.png"
-                      />
-                      <label
-                        htmlFor="attachment"
-                        className="w-full px-4 py-3 bg-background/50 backdrop-blur-sm border border-border rounded-xl text-muted-foreground hover:border-primary focus:border-primary cursor-pointer transition-colors flex items-center gap-3"
-                      >
-                        <Paperclip className="w-5 h-5" />
-                        <span className="flex-1">
-                          {formData.attachment ? formData.attachment.name : 'Click to attach a file'}
-                        </span>
-                      </label>
-                    </div>
                   </div>
 
                   <GlowButton

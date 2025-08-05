@@ -168,49 +168,25 @@ const SettingsPanel = () => {
               </div>
             </div>
 
-            {/* 3D Background Selection */}
+            {/* Background Selection */}
             <div>
               <h3 className="font-plus-jakarta text-sm font-bold text-foreground/80 mb-4 flex items-center gap-2 uppercase tracking-wider">
                 <Sparkles className="w-4 h-4" />
-                Three Dimensional Shapes
+                Background Themes
               </h3>
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-3 gap-2">
                 {backgroundOptions.map((option) => (
                   <button
                     key={option.id}
                     onClick={() => setBackgroundType(option.id as any)}
-                    className={`group relative p-4 rounded-xl border text-xs font-semibold transition-all duration-200 hover:scale-105 ${
+                    className={`p-3 rounded-lg border text-xs font-medium transition-all duration-200 ${
                       backgroundType === option.id 
-                        ? 'border-primary ring-2 ring-primary/30 shadow-lg shadow-primary/25' 
-                        : 'border-border/50 hover:border-primary/40'
+                        ? 'border-primary bg-primary/10 text-primary' 
+                        : 'border-border/50 hover:border-primary/40 hover:bg-accent/50'
                     }`}
                   >
-                    <div className={`absolute inset-0 bg-gradient-to-br ${option.gradient} rounded-xl ${
-                      backgroundType === option.id ? 'opacity-100' : 'opacity-50 group-hover:opacity-75'
-                    } transition-opacity`}></div>
-                    
-                    <div className="relative z-10 flex flex-col items-center">
-                      <div 
-                        className={`text-2xl mb-2 ${
-                          backgroundType === option.id ? 'scale-110' : ''
-                        } transition-transform`}
-                        style={{ 
-                          filter: backgroundType === option.id ? 'brightness(1.3) drop-shadow(0 0 8px currentColor)' : 'none'
-                        }}
-                      >
-                        {option.preview}
-                      </div>
-                      <div className={`text-center leading-tight mb-1 ${
-                        backgroundType === option.id ? 'text-foreground' : 'text-muted-foreground'
-                      }`}>
-                        {option.name}
-                      </div>
-                      <div className={`text-[10px] text-center leading-tight ${
-                        backgroundType === option.id ? 'text-foreground/70' : 'text-muted-foreground/60'
-                      }`}>
-                        {option.description}
-                      </div>
-                    </div>
+                    <div className="text-lg mb-1">{option.preview}</div>
+                    <div className="text-[10px] leading-tight">{option.name}</div>
                   </button>
                 ))}
               </div>
